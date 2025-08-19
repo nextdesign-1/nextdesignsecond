@@ -326,6 +326,7 @@ background-repeat: repeat-x;
     transition: 1s ease;
 }
 .hero-para {
+    opacity: 0;
     font-size: 22px;
     color: hsl(0, 0%, 85%);
 }

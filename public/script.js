@@ -10,12 +10,13 @@ function closeMenu(){
 
 function startAnimation(){
     document.querySelector(".hero-para").innerHTML = document.querySelector(".hero-para").textContent
-  .split('')
-  .map(char => {
-    if (char === ' ') return `<span>&nbsp;</span>`;
-    return `<span>${char}</span>`;
-  })
-  .join('');
+    .split('')
+    .map(char => {
+        if (char === ' ') return `<span>&nbsp;</span>`;
+        return `<span>${char}</span>`;
+    })
+    .join('');
+    document.querySelector(".hero-para").style.opacity = "1";
 
     document.querySelector(".outline-block").style.transform = "translateX(1700px)";
 
