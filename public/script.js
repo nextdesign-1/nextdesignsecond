@@ -162,7 +162,6 @@ document.querySelectorAll(".work-border").forEach(target => {
 });
 
 
-function nothing(){
 const params = new URLSearchParams(window.location.search);
 let todayBox;
 const months = [
@@ -575,17 +574,4 @@ if(params.get("cancel")){
         }
         requestDelete();
     }
-}
-
-/*
-create table bookings (
-	id int auto_increment primary key,
-    booking_time time,
-    booking_date varchar(255),
-    email varchar(255),
-    message varchar(255),
-    booking_type varchar(255),
-    cancel_code varchar(255)
-);
-*/
 }
