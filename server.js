@@ -25,7 +25,10 @@ db.query('SELECT 1', (err, results) => {
     else console.log('Database is working');
 });
 
-app.use(express.static('public')); 
+app.use(cors({
+    origin: 'https://owen-developer.github.io', // GitHub Pages root domain
+    credentials: true
+}));
 
 ////////////////////////// REUSABLE FUNCTIONS LOGIC ///////////////////////////
 const transporter = nodemailer.createTransport({
