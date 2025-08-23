@@ -9,6 +9,7 @@ require('dotenv').config();
 const nodemailer = require('nodemailer');
 const crypto = require('crypto');
 const e = require('express');
+const cors = require('cors');
 
 const db = mysql.createPool({
     host: process.env.DB_HOST,
