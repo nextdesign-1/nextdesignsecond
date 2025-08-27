@@ -28,9 +28,9 @@ function createHtml(){
         <div class="header-nav">
             <a href="index.html" class="header-link">Home</a>
             <a href="team.html" class="header-link">Our team</a>
-            <a href="#services" class="header-link">Services</a>
+            <a href="index.html#services" class="header-link">Services</a>
             <a href="projects.html" class="header-link">Projects</a>
-            <a href="#bookings" class="header-link">Contact</a>
+            <a href="index.html#bookings" class="header-link">Contact</a>
         </div>
 
         <a href="#bookings" class="btn-header">Start Project</a>
