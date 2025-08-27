@@ -29,7 +29,7 @@ db.query('SELECT 1', (err, results) => {
 });
 
 app.use(cors({
-    origin: 'https://owen-developer.github.io', // GitHub Pages root domain
+    origin: 'https://nextdesignwebsite.com', // GitHub Pages root domain
     credentials: true
 }));
 
