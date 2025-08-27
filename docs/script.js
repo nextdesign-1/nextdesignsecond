@@ -10,11 +10,11 @@ function createHtml(){
         </div>
         <div class="menu-ul">
             <a href="index.html" class="menu-li"><div class="menu-li-txt">Home</div></a>
-            <a href="#about" class="menu-li">
+            <a href="team.html" class="menu-li">
                 <div class="menu-li-txt">About us</div>
             </a>
             <a href="#services" class="menu-li"><div class="menu-li-txt">Our Services</div></a>
-            <a href="#works" class="menu-li"><div class="menu-li-txt">Our Works</div></a>
+            <a href="projects.html" class="menu-li"><div class="menu-li-txt">Our Works</div></a>
             <a href="#bookings" class="menu-li"><div class="menu-li-txt">Book a Call</div></a>
         </div>
     `;
@@ -640,7 +640,9 @@ if(document.querySelector(".book-container")){
                 if(data.message == "failure"){
                     window.location.href = "/index.html";
                 } else {
-                    document.querySelectorAll(".admin-element, i.admin-element").forEach(element => element.style.display = "flex");
+                    setTimeout(() => {
+                        document.querySelectorAll(".admin-element, i.admin-element").forEach(element => element.style.display = "flex");
+                    }, 800);
                 }
             } catch (error) {
                 console.error('Error fetching data:', error);
