@@ -133,6 +133,7 @@ app.post("/api/book-appointment", (req, res) => {
             return res.json({ message: 'Failure' });
         }
 
+        sendClientEmail("info@nextdesignwebsite.com", date, time, email, message);
         sendClientEmail("jackbaileywoods@gmail.com", date, time, email, message);
         sendUserEmail(email, date, time, cancelLink);
         return res.json({ message: 'success' });
