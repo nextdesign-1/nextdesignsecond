@@ -418,8 +418,22 @@ if(document.querySelector(".book-container")){
     function makeSlots(times){
         document.querySelector(".time-ul").innerHTML = "";
         times.forEach(time => {
-            document.querySelector(".time-ul").innerHTML += `<div class="time-wrapper">${time} <i class="fa-solid fa-xmark time-x admin-element" onclick="closeShowModal()"></i></div>`;
+            document.querySelector(".time-ul").innerHTML += `<div class="time-wrapper">${time} <i class="fa-solid fa-xmark time-x" onclick="closeShowModal()"></i></div>`;
         });
+        async function getCode() {
+            try {
+                const response = await fetch(url + `/api/admin-code?admin=${params.get("admin")}&code=${params.get("code")}`);
+                const data = await response.json(); 
+                if(data.message == "failure"){
+                    document.querySelectorAll("i.time-x").forEach(element => element.style.display = "none");
+                } else {
+                    document.querySelectorAll("i.time-x").forEach(element => element.style.display = "block");
+                }
+            } catch (error) {
+                console.error('Error fetching data:', error);
+            }
+        }
+        getCode();
 
         document.querySelectorAll(".time-wrapper").forEach(box => {
             box.addEventListener("click", () => {

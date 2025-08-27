@@ -1863,6 +1863,9 @@ i.book-delete-icon {
         font-size: 14px;
     }
 
+    .meet-container {
+        margin-bottom: 40px;
+    }
     .meet-flex {
         flex-direction: column;
     }
@@ -1892,10 +1895,18 @@ i.book-delete-icon {
         font-size: 18px;
     }
     .meet-stat-head {
-        font-size: 52px;
+        font-size: 64px;
     }
     .meet-stat-txt {
         font-size: 20px;
+    }
+    .meet-title {
+        font-size: 36px;
+    }
+    .meet-para {
+        font-size: 15px;
+        width: 500px;
+        max-width: 100%;
     }
 }
 @media only screen and (max-width: 1000px){
