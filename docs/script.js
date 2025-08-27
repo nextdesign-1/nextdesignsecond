@@ -635,7 +635,7 @@ if(document.querySelector(".book-container")){
     if(params.get("admin") == "true" && params.get("code")){
         async function getCode() {
             try {
-                const response = await fetch(`/api/admin-code?admin=${params.get("admin")}&code=${params.get("code")}`);
+                const response = await fetch(url + `/api/admin-code?admin=${params.get("admin")}&code=${params.get("code")}`);
                 const data = await response.json(); 
                 if(data.message == "failure"){
                     window.location.href = "/index.html";
