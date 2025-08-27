@@ -19,41 +19,6 @@
         <div class="outline-block"></div>
     </div>
 
-    <div class="menu-container">
-        <div class="menu-x" onclick="closeMenu()">
-            <div class="x-line x1"></div>
-            <div class="x-line x2"></div>
-        </div>
-        <div class="menu-ul">
-            <a href="index.html" class="menu-li"><div class="menu-li-txt">Home</div></a>
-            <a href="#about" class="menu-li">
-                <div class="menu-li-txt">About us</div>
-            </a>
-            <a href="#services" class="menu-li"><div class="menu-li-txt">Our Services</div></a>
-            <a href="#works" class="menu-li"><div class="menu-li-txt">Our Works</div></a>
-            <a href="#bookings" class="menu-li"><div class="menu-li-txt">Book a Call</div></a>
-        </div>
-    </div>
-
-    <div class="header width">
-        <div class="header-name">NextDesign</div>
-
-        <div class="header-nav">
-            <a href="index.html" class="header-link">Home</a>
-            <a href="#about" class="header-link">About</a>
-            <a href="#services" class="header-link">Services</a>
-            <a href="#works" class="header-link">Projects</a>
-            <a href="#bookings" class="header-link">Contact</a>
-        </div>
-
-        <a href="#bookings" class="btn-header">Start Project</a>
-        <div class="header-burger" onclick="openMenu()">
-            <div class="burger-line line1"></div>
-            <div class="burger-line line2"></div>
-            <div class="burger-line line3"></div>
-        </div>
-    </div>
-
     <div class="hero-container width">
         <div class="hero-content">
             <div class="eyebrow hero-eyebrow"><span></span> Web Design Experts</div>
@@ -105,17 +70,17 @@
         <div class="about-right">
             <div class="about-right-col scroll-target" style="margin-top: auto;">
                 <div class="about-section">
-                    <img src="images/about/design.png" class="about-icon" />
+                    <img src="images/about/target.png" class="about-icon" />
                     <div class="about-section-col">
-                        <div class="about-head">Modern Designs</div>
-                        <div class="about-txt">We design modern sites that reflect your brand and build impressions that truly last longer.</div>
+                        <div class="about-head">Our Mission</div>
+                        <div class="about-txt">We help businesses thrive online by developing modern, powerful websites.</div>
                     </div>
                 </div>
                 <div class="about-border"></div>
                 <div class="about-section">
-                    <img src="images/about/coding.png" class="about-icon" />
+                    <img src="images/about/trophy.png" class="about-icon" />
                     <div class="about-section-col">
-                        <div class="about-head">Custom Coded</div>
+                        <div class="about-head">Core Values</div>
                         <div class="about-txt">We build every site from scratch, tailored precisely to your business goals and specific needs.</div>
                     </div>
                 </div>
@@ -134,10 +99,10 @@
                 </div>
                 <div class="about-border"></div>
                 <div class="about-section">
-                    <img src="images/about/settings.png" class="about-icon" />
+                    <img src="images/about/book.png" class="about-icon" />
                     <div class="about-section-col">
-                        <div class="about-head">SEO Optimized</div>
-                        <div class="about-txt">Built with SEO best practices to boost your rankings and increase traffic across all devices.</div>
+                        <div class="about-head">Our Story</div>
+                        <div class="about-txt">We provide businesses with websites that actually work — sites that rank well and look timeless.</div>
                     </div>
                 </div>
             </div>
@@ -402,6 +367,7 @@
                     </div>
                     <div class="time-col">
                         <div class="time-head">Free Times</div>
+                        <div id="timeMsg" style="display: none; font-size: 14px; text-align: center; margin-top: 40px;">Day closed, reload page.</div>
                         <div class="time-ul">
                             <div class="time-wrapper">10:00</div>
                             <div class="time-wrapper">10:30</div>
@@ -419,6 +385,8 @@
                 <div class="book-bottom">
                     <div class="btn-cal btn-cancel" onclick="cancelCal()">Cancel</div>
                     <div class="btn-cal btn-apply" onclick="resetCal()">Reset</div>
+                    <div class="btn-admin admin-element" id="adminShow" onclick="showBookings()">show bookings</div>
+                    <div class="btn-admin admin-element" id="adminDelete" onclick="closeAllBookings()">close day</div>
                 </div>
             </div>
 
@@ -457,33 +425,22 @@
         </div>
     </div>
 
-    <div class="foot-container">
-        <div class="foot-flex width">
-            <div class="foot-col foot-col-left">
-                <img src="images/logo-transparent.png" class="foot-img" />
-                <div class="foot-para">NextDesign creates modern, high-performing websites with creative design and reliable development, helping businesses grow online.</div>
-                <a href="#bookings" class="btn-foot">Schedule a Call</a>
-            </div>
-            <div class="foot-col">
-                <div class="foot-label">Useful Links</div>
-                <a href="index.html" class="foot-link">Home</a>
-                <a href="#about" class="foot-link">About us</a>
-                <a href="#services" class="foot-link">Our Services</a>
-                <a href="#works" class="foot-link">Our Works</a>
-                <a href="#bookings" class="foot-link">Bookings</a>
-            </div>
-            <div class="foot-col">
-                <div class="foot-label">Our Services</div>
-                <a href="#services" class="foot-link">Design & Development</a>
-                <a href="#services" class="foot-link">Backend Systems</a>
-                <a href="#services" class="foot-link">SEO Optimization</a>
-                <a href="#services" class="foot-link">Site Maintenance</a>
-                <a href="#services" class="foot-link">Social Media Managment</a>
-            </div>
+    <div class="book-show-modal">
+        <div class="book-show-wrapper">
+            <!-- 
+                <div class="book-show-section" style="padding: 20px 12px; border: 1px solid white;">
+                    <div class="book-show-txt">Time: <span class="book-show-txt" id="bookShowTime"></span></div>
+                    <div class="book-show-txt">Email: <span class="book-show-txt" id="bookShowTime"></span></div>
+                    <div class="book-show-txt">Message: <span class="book-show-txt" id="bookShowTime"></span></div>
+                    <div class="book-show-txt" style="text-decoration: underline;" onclick="deleteBooking()">DELETE BOOKING</div>
+                </div>
+            -->
+<i class="fa-solid fa-xmark book-show-x" onclick="closeShowModal()"></i>
+                    
+                    <div class="book-show-empty">
+                        no bookings here.
+                    </div>
         </div>
-        <div class="foot-hr"></div>
-
-        <div class="foot-copy width">© NextDesign 2025. All Rights Reserved</div>
     </div>
 
 

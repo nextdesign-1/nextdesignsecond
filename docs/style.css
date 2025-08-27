@@ -829,6 +829,277 @@ i.services-icon {
 }
 /* =============================== */
 
+/* ===== OUR TEAM PAGE ===== */
+.meet-container {
+    width: 1300px;
+    max-width: calc(100% - 60px);
+    margin: 100px auto;
+    display: flex;
+    flex-direction: column;
+}
+.meet-eyebrow {
+    align-self: center;
+}
+.meet-title {
+    margin-top: 16px;
+    text-align: center;
+    font-size: 64px;
+    font-weight: 600;
+    color: white;
+}
+.meet-para {
+    text-align: center;
+    margin: 18px auto 0;
+    width: 550px;
+    font-size: 18px;
+    color: hsl(0, 0%, 85%);
+    line-height: 1.65;
+}
+.meet-label {
+    text-align: center;
+    font-size: 16px;
+    color: white;
+}
+.meet-slide {
+    width: 100%;
+    margin-top: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    justify-content: center;
+    gap: 40px;
+    mask-image: linear-gradient(to right, rgba(0, 0, 0, 0) 2%, rgb(0, 0, 0) 35%, rgb(0, 0, 0) 65%, rgba(0, 0, 0, 0) 98%);
+    overflow: hidden;
+}
+.meet-result {
+    color: hsl(0, 0%, 75%);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    white-space: nowrap;
+    font-size: 15px;
+    animation: slide_result 50s linear infinite;
+}
+.meet-result span {
+    color: white;
+    font-size: 15px;
+}
+.meet-hr {
+    margin: 50px 0;
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(90deg,
+        #0f36ac,   /* Royal Blue */
+        #8A2BE2,   /* Blue Violet */
+        #ff0000    /* Pink-Red */
+    );
+    background: hsl(0, 0%, 15%);
+}
+@keyframes slide_result {
+    0% {
+        transform: translateX(0px);
+    }
+    100% {
+        transform: translateX(-2205px);
+    }
+}
+.meet-logo {
+    height: 60px;
+    width: auto;
+}
+.work-hr {
+    margin: 50px 0;
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(90deg,
+        #0f36ac,   /* Royal Blue */
+        #8A2BE2,   /* Blue Violet */
+        #ff0000    /* Pink-Red */
+    );
+    background: hsl(0, 0%, 15%);
+}
+/*
+pfp hover: radial-gradient(62.83% 48.66% at 10% 81.87%, rgba(102, 155, 255, 0.50) 0%, rgba(44, 65, 254, 0.00) 100%), linear-gradient(180deg, rgba(44, 65, 254, 0.70) 0%, rgba(44, 65, 254, 0.00) 100%), #0B0B0B;
+*/
+.meet-col {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+.meet-flex {
+    width: 100%;
+    display: flex;
+    gap: 16px;
+}
+.meet-box {
+    padding: 60px;
+}
+.meet-box, .meet-pfp-box {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    border-radius: 20px;
+    background: url(images/glow.svg);
+    background-size: cover;
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+    background-color: hsl(0, 0%, 4%);
+    border-radius: 20px;
+}
+.meet-box:hover, .meet-pfp-box:hover {
+    background: radial-gradient(62.83% 48.66% at 10% 81.87%, rgba(11, 87, 228, 0.5) 0%, rgba(44, 65, 254, 0.00) 100%), linear-gradient(180deg, rgba(224, 29, 231, 0.35) 0%, rgba(44, 65, 254, 0.00) 100%), #0B0B0B;
+}
+.meet-box-pre {
+    background: radial-gradient(62.83% 48.66% at 10% 81.87%, rgba(11, 87, 228, 0.5) 0%, rgba(44, 65, 254, 0.00) 100%), linear-gradient(180deg, rgba(224, 29, 231, 0.35) 0%, rgba(44, 65, 254, 0.00) 100%), #0B0B0B !important;
+}
+.meet-box-large {
+    width: 100%;
+}
+.meet-box-small {
+    width: 75%;
+}
+.meet-txt {
+    font-size: 18px;
+    line-height: 1.7;
+    font-weight: 500;
+    color: white;
+}
+.meet-pfp-box {
+    padding: 35px;
+}
+.meet-name {
+    font-size: 32px;
+    font-weight: 500;
+    color: white;
+}
+.meet-name-desc {
+    font-size: 17px;
+    margin-top: 12px;
+    color: hsl(0, 0%, 75%);
+}
+i.meet-email {
+    cursor: pointer;
+    margin-top: auto;
+    width: 54px;
+    height: 54px;
+    border-radius: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 25px;
+    color: hsl(0, 0%, 14%);
+    background-color: white;
+}
+.meet-pfp {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+}
+.meet-box-light {
+    min-height: 680px;
+    background: url(images/mockup3.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: 50% 50%;
+}
+.meet-box-light:hover {
+    background: url(images/mockup3.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: 50% 50%;
+}
+.meet-stat-head {
+    font-weight: 600;
+    font-size: 90px;
+    color: hsl(0, 0%, 10%);
+}
+.meet-stat-txt {
+    font-size: 24px;
+    line-height: 1.6;
+    font-weight: 600;
+    margin-top: 8px;
+    color: hsl(0, 0%, 10%);
+}
+.meet-arrow {
+    cursor: pointer;
+    position: absolute;
+    top: 45px;
+    right: 45px;
+    height: 24px;
+    width: auto;
+}
+.meet-info {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 30px;
+}
+.meet-info-pfp {
+    background-color: white;
+    width: 62px;
+    height: 62px;
+    border-radius: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.meet-owen-img {
+    width: 36px;
+    height: auto;
+    filter: invert(1);
+}
+.meet-info-col {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+.meet-owen {
+    font-size: 18px;
+    font-weight: 500;
+    color: white;
+}
+.meet-owen-role {
+    font-size: 16px;
+    color: hsl(0, 0%, 75%);
+}
+.meet-icon {
+    align-self: flex-start;
+    height: 80px;
+    width: auto;
+}
+.meet-mission-head {
+    font-size: 40px;
+    font-weight: 500;
+    color: white;
+    margin: 30px 0;
+}
+.meet-client-info {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+.meet-client-img {
+    width: 62px;
+    height: auto;
+}
+.meet-client-txt {
+    margin: 30px 0;
+    width: 500px;
+    max-width: 100%;
+    font-size: 22px;
+    line-height: 1.7;
+    font-weight: 500;
+    color: white;
+}
+.meet-client-head {
+    line-height: 1.4;
+    font-size: 40px;
+    font-weight: 600;
+    color: white;
+}
+/* =========================== */
+
 /* ===== BOOKING SECTION ===== */
 .book-container {
     margin: 0 auto;
@@ -978,6 +1249,7 @@ i.services-icon {
     scrollbar-width: none;
 }
 .time-wrapper {
+    position: relative;
     cursor: pointer;
     width: 100%;
     border: 1px solid hsl(0, 0%, 20%);
@@ -989,6 +1261,14 @@ i.services-icon {
     border-radius: 8px;
     font-size: 16px;
     color: hsl(0, 0%, 85%);
+}
+i.time-x {
+    position: absolute;
+    top: 4px;
+    right: 4px;
+    font-size: 14px;
+    color: white;
+    cursor: pointer;
 }
 .time-active {
     background-color: white;
@@ -1018,6 +1298,14 @@ i.services-icon {
 .btn-apply {
     color: hsl(0, 0%, 9%);
     background-color: white;
+}
+.btn-admin {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 15px;
+    text-decoration: underline;
 }
 
 .form-wrapper {
@@ -1157,6 +1445,51 @@ i.book-modal-check {
     background-color: hsl(0, 0%, 85%);
 }
 
+.book-show-modal {
+    z-index: 99;
+    opacity: 0;
+    pointer-events: none;
+    position: fixed;
+    width: 100%;
+    height: 100vh;
+    background-color: hsla(0, 0%, 0%, 0.8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: 0.3s ease;
+}
+.book-show-wrapper {
+    text-align: center;
+    background-color: hsl(0, 0%, 9%);
+    border: 1px solid hsl(0, 0%, 15%);
+    border-radius: 8px;
+    padding: 28px 24px;
+    max-width: calc(100% - 30px);
+    width: 430px;
+    height: 340px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+}
+.book-show-section {
+    padding: 15px 0;
+    border-top: 1px solid white;
+    border-bottom: 1px solid white;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+.book-show-txt {
+    font-size: 14px;
+}
+.book-show-x {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    color: white;
+    font-size: 16px;
+}
 i.modal-exit {
     cursor: pointer;
     position: absolute;
@@ -1260,6 +1593,9 @@ i.book-delete-icon {
 }
 .btn-book-delete-booking:hover {
     background-color: hsl(0, 68%, 58%);
+}
+.admin-element, i.admin-element {
+    display: none;
 }
 /* ============================ */
 
@@ -1386,7 +1722,7 @@ i.book-delete-icon {
     }
 }
 @media only screen and (max-width: 1100px){
-    .width {
+    .width, .meet-container {
         max-width: calc(100% - 20px);
     }
     .header {
@@ -1525,6 +1861,41 @@ i.book-delete-icon {
         padding-top: 16px;
         width: 900px;
         font-size: 14px;
+    }
+
+    .meet-flex {
+        flex-direction: column;
+    }
+    .meet-box, .meet-pfp-box {
+        width: 100%;
+    }
+    .meet-box {
+        padding: 60px 25px 60px 30px;
+    }
+    .meet-profile-height {
+        height: 175px;
+    }
+    .meet-pfp {
+        width: 320px;
+        height: auto;
+    }
+    .meet-box-light {
+        padding: 30px;
+        background-size: cover;
+        background-position: 40% 50%;
+        min-height: 720px;
+    }
+    .meet-client-head {
+        font-size: 28px;
+    }
+    .meet-client-txt {
+        font-size: 18px;
+    }
+    .meet-stat-head {
+        font-size: 52px;
+    }
+    .meet-stat-txt {
+        font-size: 20px;
     }
 }
 @media only screen and (max-width: 1000px){

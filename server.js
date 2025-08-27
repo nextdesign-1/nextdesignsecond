@@ -11,6 +11,8 @@ const crypto = require('crypto');
 const e = require('express');
 const cors = require('cors');
 
+const url = "http://localhost:3000";
+
 const db = mysql.createPool({
     host: process.env.DB_HOST,
     user: process.env.DB_USER,
@@ -31,6 +33,8 @@ app.use(cors({
     credentials: true
 }));
 
+app.use(express.static('docs'));
+
 ////////////////////////// REUSABLE FUNCTIONS LOGIC ///////////////////////////
 const transporter = nodemailer.createTransport({
     service: 'gmail',
@@ -44,7 +48,7 @@ function sendClientEmail(userEmail, date, time, email, message){
         from: process.env.EMAIL_USER,  // Sender address
         to: userEmail,                 // Receiver's email
         subject: 'New Booking', // Subject line
-        text: `Hello, a booking was made for poojasbeautysalon for: ${date}, ${time}\n\nEmail: ${email}\n\nMessage: ${message}`,
+        text: `Hello, a call was booked with NextDesign for: ${date}, ${time}\n\nEmail: ${email}\n\nMessage: ${message}`,
     };
   
     // Send mail
@@ -60,7 +64,7 @@ function sendUserEmail(userEmail, date, time, link) {
     const mailOptions = {
         from: process.env.EMAIL_USER,  // Sender address
         to: userEmail,                 // Receiver's email
-        subject: 'Booking Requested', // Subject line
+        subject: 'Booking Confirmed', // Subject line
         text: `Hello, you booked a call with NextDesign for ${date}, ${time}\n\nCancel anytime with this link: ${link}`,
     };
   
@@ -97,6 +101,14 @@ function isValidEmail(email){
 function generateNumber(){
     return crypto.randomBytes(5).toString('hex'); 
 }
+function requireAdmin(req, res, next){
+    const code = req.query.code;
+    if(code == process.env.ADMIN_CODE){
+    } else if(code != process.env.ADMIN_CODE) {
+        return res.json({ message: 'failure' });
+    }
+    next();
+}
 ///////////////////////////////////////////////////////////////////////////////
 
 ////////////////////////// APIS ROUTES //////////////////////////
@@ -112,7 +124,7 @@ app.post("/api/book-appointment", (req, res) => {
     }
 
     const cancelCode = generateNumber();
-    const cancelLink = "https://poojasbeauty.onrender.com/bookings.html?cancel=" + cancelCode;
+    const cancelLink = url + "/?cancel=" + cancelCode;
 
     const insertQuery = "insert into bookings (booking_date, booking_time, email, message, booking_type, cancel_code) values (?, ?, ?, ?, ?, ?)";
     db.query(insertQuery, [date, time, email, message, type, cancelCode], (err, result) => {
@@ -121,7 +133,7 @@ app.post("/api/book-appointment", (req, res) => {
             return res.json({ message: 'Failure' });
         }
 
-        sendClientEmail("info@nextdesignwebsite.com", date, time, email, message);
+        sendClientEmail("jackbaileywoods@gmail.com", date, time, email, message);
         sendUserEmail(email, date, time, cancelLink);
         return res.json({ message: 'success' });
     });
@@ -157,7 +169,6 @@ app.post("/api/check-slots", (req, res) => {
         }
 
         let timesTaken = "";
-        let daysClosed = 0;
         if(result.length > 0){
             result.forEach((row, idx) => {
                 if(idx > 0){
@@ -165,14 +176,83 @@ app.post("/api/check-slots", (req, res) => {
                 } else {
                     timesTaken = row.booking_time.slice(0, 5);
                 }
-                if(row.booking_type == "admin"){
-                    daysClosed++;
-                }
             }); 
-            return res.json({ message: 'success', times: timesTaken, closed: daysClosed });
+            return res.json({ message: 'success', times: timesTaken });
         } else {
             return res.json({ message: 'failure', times: timesTaken});
         }
+    });
+});
+
+app.get("/api/admin-code", requireAdmin, (req, res) => {
+    return res.json({ message: 'success' });
+});
+
+app.post("/api/close-all", requireAdmin, (req, res) => {
+    const date = req.body.date;
+    const times = req.body.times;
+
+    const getEmailsQuery = "select * from bookings where booking_date = ?";
+    db.query(getEmailsQuery, [date], (err, result) => {
+        if(err){
+            console.error("Error fetching bookings: " + err);
+        }
+
+        if(result.length > 0){
+            let allStr = "";
+            result.forEach(obj => {
+                if(!allStr.includes(obj.email)){
+                    allStr += obj.email;
+                    sendApologyEmail(obj.email, date);
+                }
+            });
+        }
+
+        const deleteAllQuery = "delete from bookings where booking_date = ?";
+        db.query(deleteAllQuery, [date], (err, result) => {
+            if(err){
+                console.error("Error deleting existing bookings: " + err);
+            }
+
+            let values = [];
+            for(let i = 0; i < times.length; i++){
+                values.push([times[i], date, "marceauowen@gmail.com", "Not entered", "admin", "n/a"]);
+            }
+            const closeQuery = "insert into bookings (booking_time, booking_date, email, message, booking_type, cancel_code) values ?";
+            db.query(closeQuery, [values], (err, result) => {
+                if(err){
+                    console.error("Error inserting fake bookings: " + err);
+                }
+
+                return res.json({ message: 'success' });
+            });
+        });    
+    });
+});
+
+app.post("/api/open-day", requireAdmin, (req, res) => {
+    const date = req.body.date;
+
+    const openQuery = "delete from bookings where booking_date = ?";
+    db.query(openQuery, [date], (err, result) => {
+        if(err){
+            console.error("Error opening day: " + err);
+        }
+
+        return res.json({ message: 'success' });
+    });
+});
+
+app.post("/api/show-bookings", requireAdmin, (req, res) => {
+    const date = req.body.date;
+
+    const getBookingsQuery = "select * from bookings where booking_date = ? and booking_type = ?";
+    db.query(getBookingsQuery, [date, "user"], (err, result) => {
+        if(err){
+            console.error("Error getting bookings: " + err);
+        }
+
+        return res.json({ message: 'success', arrayObjs: result });
     });
 });
 
@@ -212,6 +292,22 @@ app.post("/api/delete-booking", (req, res) => {
             }
             return res.json({ message: 'success' });
         });
+    });
+});
+
+app.post("/api/remove-slot", requireAdmin, (req, res) => {
+    const date = req.body.date; 
+    const time = req.body.time; 
+
+    const values = [time, date, "marceauowen@gmail.com", "Not entered", "admin", "n/a"];
+    const closeQuery = "insert into bookings (booking_time, booking_date, email, message, booking_type, cancel_code) values (?, ?, ?, ?, ?, ?)";
+    db.query(closeQuery, values, (err, result) => {
+        if(err){
+            console.error("Error removing slot: " + err);
+            return res.json({ message: 'failure' });
+        }
+
+        return res.json({ message: 'success' });
     });
 });
 /////////////////////////////////////////////////////////////////
