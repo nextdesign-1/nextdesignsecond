@@ -1269,6 +1269,7 @@ i.time-x {
     font-size: 14px;
     color: white;
     cursor: pointer;
+    display: none;
 }
 .time-active {
     background-color: white;
