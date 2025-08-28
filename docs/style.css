@@ -243,8 +243,26 @@ background-repeat: repeat-x;
     gap: 45px;
 }
 .header-link {
+    position: relative;
     font-size: 16px;
     color: white;
+}
+.header-link::after {
+    content: "";
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    height: 1px;
+    width: 0;
+    background: linear-gradient(90deg,
+        #0f36ac,   /* Royal Blue */
+        #8A2BE2,   /* Blue Violet */
+        #ff0000    /* Pink-Red */
+    );
+    transition: width 0.3s ease;
+}
+.header-link:hover::after {
+    width: 100%;
 }
 .btn-header {
     cursor: pointer;
@@ -935,6 +953,11 @@ pfp hover: radial-gradient(62.83% 48.66% at 10% 81.87%, rgba(102, 155, 255, 0.50
 .meet-box {
     padding: 60px;
 }
+.meet-box-overflow {
+    max-height: 525px;
+    overflow: hidden;
+    transition: 0.4s ease;    
+}
 .meet-box, .meet-pfp-box {
     position: relative;
     display: flex;
@@ -965,7 +988,19 @@ pfp hover: radial-gradient(62.83% 48.66% at 10% 81.87%, rgba(102, 155, 255, 0.50
     font-weight: 500;
     color: white;
 }
+.meet-fin-txt {
+    font-size: 18px;
+    line-height: 1.7;
+    font-weight: 500;
+    color: white;
+}
+span.meet-fin-txt {
+    text-decoration: underline;
+    text-underline-offset: 2px;
+    cursor: pointer;
+}
 .meet-pfp-box {
+    max-height: 525px;
     padding: 35px;
 }
 .meet-name {
@@ -978,18 +1013,39 @@ pfp hover: radial-gradient(62.83% 48.66% at 10% 81.87%, rgba(102, 155, 255, 0.50
     margin-top: 12px;
     color: hsl(0, 0%, 75%);
 }
-i.meet-email {
+.meet-email-wrapper {
+    z-index: 4;
+    align-self: flex-start;
     cursor: pointer;
     margin-top: auto;
-    width: 54px;
-    height: 54px;
+    padding: 20px;
     border-radius: 200px;
+    gap: 0px;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 25px;
-    color: hsl(0, 0%, 14%);
     background-color: white;
+}
+.meet-email-wrapper:hover {
+    gap: 18px;
+}
+.meet-email-wrapper:hover .meet-email-txt {
+    opacity: 1;
+    width: 238px;
+}
+.meet-email-txt {
+    opacity: 0;
+    width: 0px;
+    line-height: 1;
+    padding-bottom: 3px;
+    font-size: 16px;
+    font-weight: 500;
+    color: hsl(0, 0%, 14%);
+    transition: 0.3s ease;
+}
+i.meet-email {
+    font-size: 24px;
+    color: hsl(0, 0%, 14%);
 }
 .meet-pfp {
     position: absolute;

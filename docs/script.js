@@ -242,6 +242,17 @@ document.querySelectorAll(".work-border").forEach(target => {
     workHori.observe(target);
 });
 
+function expandFinTxt(){
+    document.getElementById("finReadMore").style.display = "none";
+    document.querySelector(".meet-box-overflow").style.maxHeight = "950px";
+}
+function hideFinTxt(){
+    document.querySelector(".meet-box-overflow").style.maxHeight = "525px";
+    setTimeout(() => {
+        document.getElementById("finReadMore").style.display = "block";
+    }, 200);
+}
+
 
 
 
