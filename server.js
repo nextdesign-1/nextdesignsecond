@@ -11,7 +11,7 @@ const crypto = require('crypto');
 const e = require('express');
 const cors = require('cors');
 
-const url = "https://nextdesignsecond.onrender.com";
+const url = "https://nextdesignwebsite.com";
 
 const db = mysql.createPool({
     host: process.env.DB_HOST,
