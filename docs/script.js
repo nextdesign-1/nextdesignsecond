@@ -928,7 +928,7 @@ if(document.querySelector(".book-container")){
                 let fullDate = currentYear + "-" + monStr + "-" + dateStr;
                 const dataToSend = { date: fullDate, time: input.value };
                 try {
-                    const response = await fetch('/api/create-slot', {
+                    const response = await fetch(url + '/api/create-slot', {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json', 
@@ -943,7 +943,14 @@ if(document.querySelector(".book-container")){
                     }
 
                     const data = await response.json();
-
+                    if(data.message == "success"){
+                        location.reload();
+                    } else {
+                        input.setAttribute("placeholder", "ERROR IN DB");
+                        setTimeout(() => {
+                            input.setAttribute("placeholder", "booking time XX:XX");
+                        }, 2000);
+                    }
 
                 } catch (error) {
                     console.error('Error posting data:', error);

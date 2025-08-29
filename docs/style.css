@@ -2247,6 +2247,9 @@ i.book-delete-icon {
         font-size: 15px;
     }
 
+    .book-cal-container {
+        min-width: 100%;
+    }
     .btn-book {
         font-size: 15px;
     }
