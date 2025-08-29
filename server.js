@@ -213,7 +213,7 @@ app.post("/api/close-all", requireAdmin, (req, res) => {
             result.forEach(obj => {
                 if(!allStr.includes(obj.email)){
                     allStr += obj.email;
-                    sendApologyEmail(obj.email, date);
+                    sendUserDelete(obj.email);
                 }
             });
         }
