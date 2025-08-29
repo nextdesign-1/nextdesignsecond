@@ -541,6 +541,7 @@ if(document.querySelector(".book-container")){
                     try {
                         const response = await fetch(url + `/api/remove-slot?admin=${params.get("admin")}&code=${params.get("code")}`, {
                             method: 'POST',
+                            credentials: 'include',
                             headers: {
                                 'Content-Type': 'application/json', 
                             },
@@ -759,6 +760,7 @@ if(document.querySelector(".book-container")){
                 try {
                     const response = await fetch(url + `/api/close-all?admin=${params.get("admin")}&code=${params.get("code")}`, {
                         method: 'POST',
+                        credentials: 'include',
                         headers: {
                             'Content-Type': 'application/json', 
                         },
@@ -836,6 +838,8 @@ if(document.querySelector(".book-container")){
                     const dataToSend = { date: fullDate };
                     const response = await fetch(url + `/api/show-bookings?admin=${params.get("admin")}&code=${params.get("code")}`, {
                         method: 'POST',
+                        credentials: 'include',
+
                         headers: {
                             'Content-Type': 'application/json', 
                         },
@@ -866,6 +870,7 @@ if(document.querySelector(".book-container")){
                                 try {
                                     const response = await fetch(url + '/api/delete-booking', {
                                         method: 'POST',
+                                        credentials: 'include',
                                         headers: {
                                             'Content-Type': 'application/json', 
                                         },
@@ -930,6 +935,7 @@ if(document.querySelector(".book-container")){
                 try {
                     const response = await fetch(url + `/api/create-slot?admin=${params.get("admin")}&code=${params.get("code")}`, {
                         method: 'POST',
+                        credentials: 'include',
                         headers: {
                             'Content-Type': 'application/json', 
                         },
