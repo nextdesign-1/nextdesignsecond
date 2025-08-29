@@ -127,7 +127,7 @@
                     <i class="fa-solid fa-palette services-icon"></i>
                     <div class="services-head">Design & Development</div>
                     <div class="services-txt">We design modern, user-focused websites that look great, perform well, and match your brand, engaging visitors effectively and driving meaningful business results every time.</div>
-                    <a href="#works" class="services-cta">Learn more <img src="images/arrow.png" class="services-arrow" /></a>
+                    <div onclick="showServiceModal(0)" class="services-cta">Learn more <img src="images/arrow.png" class="services-arrow" /></div>
                 </div>
             </div>
             <div class="services-wrapper">
@@ -136,7 +136,7 @@
                     <i class="fa-solid fa-wrench services-icon"></i>
                     <div class="services-head">Website Maintenance</div>
                     <div class="services-txt">We keep your website running smoothly with updates, fixes, and performance checks, ensuring it stays secure, loads quickly, and delivers an excellent experience for every visitor who visits.</div>
-                    <a href="#works" class="services-cta">Learn more <img src="images/arrow.png" class="services-arrow" /></a>
+                    <div onclick="showServiceModal(1)" class="services-cta">Learn more <img src="images/arrow.png" class="services-arrow" /></div>
                 </div>
             </div>
             <div class="services-wrapper">
@@ -145,7 +145,7 @@
                     <i class="fa-solid fa-magnifying-glass services-icon"></i>
                     <div class="services-head">SEO Optimization</div>
                     <div class="services-txt">We optimise your website so it appears higher in Google searches, helping customers find you faster and driving more organic traffic to your online presence.</div>
-                    <a href="#works" class="services-cta">Learn more <img src="images/arrow.png" class="services-arrow" /></a>
+                    <div onclick="showServiceModal(2)" class="services-cta">Learn more <img src="images/arrow.png" class="services-arrow" /></div>
                 </div>
             </div>
         </div>
@@ -156,7 +156,7 @@
                     <i class="fa-solid fa-chart-line services-icon"></i>
                     <div class="services-head">Online Business Consultations</div>
                     <div class="services-txt">We provide expert online business consultations, guiding strategy, growth, and digital presence. Our tailored advice ensures your business thrives with clarity, focus, and measurable results.</div>
-                    <a href="#works" class="services-cta">Learn more <img src="images/arrow.png" class="services-arrow" /></a>
+                    <div onclick="showServiceModal(3)" class="services-cta">Learn more <img src="images/arrow.png" class="services-arrow" /></div>
                 </div>
             </div>
             <div class="services-wrapper">
@@ -165,7 +165,7 @@
                     <i class="fa-solid fa-mobile-screen-button services-icon"></i>
                     <div class="services-head">Web App Development</div>
                     <div class="services-txt">Our web app development delivers scalable, secure, and user-friendly applications. From idea to launch, we craft powerful tools that streamline operations and engage your audience.</div>
-                    <a href="#works" class="services-cta">Learn more <img src="images/arrow.png" class="services-arrow" /></a>
+                    <div onclick="showServiceModal(4)" class="services-cta">Learn more <img src="images/arrow.png" class="services-arrow" /></div>
                 </div>
             </div>
             <div class="services-wrapper">
@@ -174,7 +174,116 @@
                     <i class="fa-solid fa-puzzle-piece services-icon"></i>
                     <div class="services-head">Branding Design</div>
                     <div class="services-txt">We create branding designs that capture your unique identity. Through thoughtful visuals and strategy, we help businesses communicate, build recognition, and foster lasting customer trust.</div>
-                    <a href="#works" class="services-cta">Learn more <img src="images/arrow.png" class="services-arrow" /></a>
+                    <div onclick="showServiceModal(5)" class="services-cta">Learn more <img src="images/arrow.png" class="services-arrow" /></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="smodal-modal">
+            <div class="smodal-wrapper">
+                <div class="smodal-blur"></div>
+                <i class="fa-solid fa-xmark smodal-x" onclick="closeServiceModal()"></i>
+                <div class="smodal-content">
+                    <i class="fa-solid fa-palette smodal-icon smodal-target1"></i>
+                    <div class="smodal-head smodal-target1">Design & Development</div>
+                    <div class="smodal-txt smodal-target1">We create modern, user-focused websites that look great, perform flawlessly, and reflect your brand identity. Our designs engage visitors, drive results, and deliver smooth, intuitive experiences across all devices, optimized for speed, accessibility, and long-term growth.</div>
+                    <div class="eyebrow smodal-eyebrow smodal-target2">Key Feautres</div>
+                    <div class="smodal-col">
+                        <div class="smodal-point smodal-target2"><i class="fa-solid fa-check smodal-check"></i> Modern, responsive layouts</div>
+                        <div class="smodal-point smodal-target2"><i class="fa-solid fa-check smodal-check"></i> Optimized for speed and conversions</div>
+                        <div class="smodal-point smodal-target2"><i class="fa-solid fa-check smodal-check"></i> SEO-friednly structure</div>
+                    </div>
+                    <a href="#bookings" onclick="closeServiceModal()" class="btn-smodal smodal-target3">Request a Quote <img src="images/arrow.png" class="about-arrow" /></a>
+                </div>
+            </div>
+        </div>
+        <div class="smodal-modal">
+            <div class="smodal-wrapper">
+                <div class="smodal-blur"></div>
+                <i class="fa-solid fa-xmark smodal-x" onclick="closeServiceModal()"></i>
+                <div class="smodal-content">
+                    <i class="fa-solid fa-wrench smodal-icon smodal-target1"></i>
+                    <div class="smodal-head smodal-target1">Website Maintenance</div>
+                    <div class="smodal-txt smodal-target1">We provide proactive website maintenance that keeps your site secure, updated, and performing smoothly. Our team monitors functionality, applies updates, fixes issues, and optimizes overall site health, ensuring maximum uptime and seamless experiences across all devices.</div>
+                    <div class="eyebrow smodal-eyebrow smodal-target2">Key Feautres</div>
+                    <div class="smodal-col">
+                        <div class="smodal-point smodal-target2"><i class="fa-solid fa-check smodal-check"></i> Continuous performance monitoring</div>
+                        <div class="smodal-point smodal-target2"><i class="fa-solid fa-check smodal-check"></i> Security updates and backups</div>
+                        <div class="smodal-point smodal-target2"><i class="fa-solid fa-check smodal-check"></i> Error detection and prompt fixes</div>
+                    </div>
+                    <a href="#bookings" onclick="closeServiceModal()" class="btn-smodal smodal-target3">Request a Quote <img src="images/arrow.png" class="about-arrow" /></a>
+                </div>
+            </div>
+        </div>
+        <div class="smodal-modal">
+            <div class="smodal-wrapper">
+                <div class="smodal-blur"></div>
+                <i class="fa-solid fa-xmark smodal-x" onclick="closeServiceModal()"></i>
+                <div class="smodal-content">
+                    <i class="fa-solid fa-magnifying-glass smodal-icon smodal-target1"></i>
+                    <div class="smodal-head smodal-target1">SEO Optimization</div>
+                    <div class="smodal-txt smodal-target1">Our SEO services boost online visibility, drive targeted traffic, and improve search rankings. We optimize keywords, content, and technical SEO to create a fast, user-friendly site that increases organic growth, conversions, and aligns with your brand goals.</div>
+                    <div class="eyebrow smodal-eyebrow smodal-target2">Key Feautres</div>
+                    <div class="smodal-col">
+                        <div class="smodal-point smodal-target2"><i class="fa-solid fa-check smodal-check"></i> Strategic keyword and content optimization</div>
+                        <div class="smodal-point smodal-target2"><i class="fa-solid fa-check smodal-check"></i> Backlinks & data analytics</div>
+                        <div class="smodal-point smodal-target2"><i class="fa-solid fa-check smodal-check"></i> Technical SEO improvements</div>
+                    </div>
+                    <a href="#bookings" onclick="closeServiceModal()" class="btn-smodal smodal-target3">Request a Quote <img src="images/arrow.png" class="about-arrow" /></a>
+                </div>
+            </div>
+        </div>
+        <div class="smodal-modal">
+            <div class="smodal-wrapper">
+                <div class="smodal-blur"></div>
+                <i class="fa-solid fa-xmark smodal-x" onclick="closeServiceModal()"></i>
+                <div class="smodal-content">
+                    <i class="fa-solid fa-chart-line smodal-icon smodal-target1"></i>
+                    <div class="smodal-head smodal-target1">Online Business Consultations</div>
+                    <div class="smodal-txt smodal-target1">We provide tailored online business consultations to optimize strategy, operations, and growth opportunities. Through expert analysis and actionable recommendations, we help businesses improve efficiency, customer experience, and digital presence, creating measurable impact and clear direction.</div>
+                    <div class="eyebrow smodal-eyebrow smodal-target2">Key Feautres</div>
+                    <div class="smodal-col">
+                        <div class="smodal-point smodal-target2"><i class="fa-solid fa-check smodal-check"></i> Personalized growth strategies</div>
+                        <div class="smodal-point smodal-target2"><i class="fa-solid fa-check smodal-check"></i> Operational and digital workflow optimization</div>
+                        <div class="smodal-point smodal-target2"><i class="fa-solid fa-check smodal-check"></i> Data-driven actionable insights</div>
+                    </div>
+                    <a href="#bookings" onclick="closeServiceModal()" class="btn-smodal smodal-target3">Request a Quote <img src="images/arrow.png" class="about-arrow" /></a>
+                </div>
+            </div>
+        </div>
+        <div class="smodal-modal">
+            <div class="smodal-wrapper">
+                <div class="smodal-blur"></div>
+                <i class="fa-solid fa-xmark smodal-x" onclick="closeServiceModal()"></i>
+                <div class="smodal-content">
+                    <i class="fa-solid fa-mobile-screen-button smodal-icon smodal-target1"></i>
+                    <div class="smodal-head smodal-target1">Web App Development</div>
+                    <div class="smodal-txt smodal-target1">We develop scalable, high-performance web applications that solve business challenges and deliver intuitive user experiences. Solutions integrate modern technologies, responsive interfaces, and secure architecture, enabling effective engagement and results across devices.</div>
+                    <div class="eyebrow smodal-eyebrow smodal-target2">Key Feautres</div>
+                    <div class="smodal-col">
+                        <div class="smodal-point smodal-target2"><i class="fa-solid fa-check smodal-check"></i> Custom, scalable web applications</div>
+                        <div class="smodal-point smodal-target2"><i class="fa-solid fa-check smodal-check"></i> Secure and optimized architecture</div>
+                        <div class="smodal-point smodal-target2"><i class="fa-solid fa-check smodal-check"></i> Engaging and responsive interfaces</div>
+                    </div>
+                    <a href="#bookings" onclick="closeServiceModal()" class="btn-smodal smodal-target3">Request a Quote <img src="images/arrow.png" class="about-arrow" /></a>
+                </div>
+            </div>
+        </div>
+        <div class="smodal-modal">
+            <div class="smodal-wrapper">
+                <div class="smodal-blur"></div>
+                <i class="fa-solid fa-xmark smodal-x" onclick="closeServiceModal()"></i>
+                <div class="smodal-content">
+                    <i class="fa-solid fa-wrench smodal-icon smodal-target1"></i>
+                    <div class="smodal-head smodal-target1">Branding Design</div>
+                    <div class="smodal-txt smodal-target1">We create compelling brand identities that communicate your mission, values, and vision across all platforms. From logos to typography and messaging, we ensure consistency, appeal, and resonance, helping your brand stand out and inspire loyalty.</div>
+                    <div class="eyebrow smodal-eyebrow smodal-target2">Key Feautres</div>
+                    <div class="smodal-col">
+                        <div class="smodal-point smodal-target2"><i class="fa-solid fa-check smodal-check"></i> Cohesive and memorable visual identity</div>
+                        <div class="smodal-point smodal-target2"><i class="fa-solid fa-check smodal-check"></i> Consistent cross-platform branding</div>
+                        <div class="smodal-point smodal-target2"><i class="fa-solid fa-check smodal-check"></i> Strategic messaging and design alignment</div>
+                    </div>
+                    <a href="#bookings" onclick="closeServiceModal()" class="btn-smodal smodal-target3">Request a Quote <img src="images/arrow.png" class="about-arrow" /></a>
                 </div>
             </div>
         </div>
@@ -376,24 +485,30 @@
                         <div class="time-head">Free Times</div>
                         <div id="timeMsg" style="display: none; font-size: 14px; text-align: center; margin-top: 40px;">Day closed, reload page.</div>
                         <div class="time-ul">
-                            <div class="time-wrapper">10:00</div>
-                            <div class="time-wrapper">10:30</div>
-                            <div class="time-wrapper">11:00</div>
-                            <div class="time-wrapper">11:30</div>
-                            <div class="time-wrapper">12:00</div>
-                            <div class="time-wrapper">12:30</div>
-                            <div class="time-wrapper">13:00</div>
-                            <div class="time-wrapper">13:30</div>
-                            <div class="time-wrapper">14:00</div>
-                            <div class="time-wrapper">14:30</div>
+                            <!-- 
+                                <div class="time-wrapper">10:00</div>
+                                <div class="time-wrapper">10:30</div>
+                                <div class="time-wrapper">11:00</div>
+                                <div class="time-wrapper">11:30</div>
+                                <div class="time-wrapper">12:00</div>
+                                <div class="time-wrapper">12:30</div>
+                                <div class="time-wrapper">13:00</div>
+                                <div class="time-wrapper">13:30</div>
+                                <div class="time-wrapper">14:00</div>
+                                <div class="time-wrapper">14:30</div>
+                                -->
                         </div>
                     </div>
                 </div>
                 <div class="book-bottom">
                     <div class="btn-cal btn-cancel" onclick="cancelCal()">Cancel</div>
                     <div class="btn-cal btn-apply" onclick="resetCal()">Reset</div>
-                    <div class="btn-admin admin-element" id="adminShow" onclick="showBookings()">show bookings</div>
-                    <div class="btn-admin admin-element" id="adminDelete" onclick="closeAllBookings()">close day</div>
+                </div>
+                <div class="btn-admin admin-element" id="adminShow" onclick="showBookings()" style="margin-top: 15px;">show bookings</div>
+                <div class="btn-admin admin-element" id="adminDelete" onclick="closeAllBookings()">close day</div>
+                <div style="display: flex;">
+                    <input type="text" id="adminTime" placeholder="booking time XX:XX" class="admin-input admin-element" />
+                    <div class="btn-admin admin-element" id="adminCreate" onclick="createExtraSlot()">create</div>
                 </div>
             </div>
 

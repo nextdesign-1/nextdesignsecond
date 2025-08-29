@@ -688,6 +688,142 @@ i.services-icon {
     );
     background-size: cover;
 }
+
+.smodal-modal {
+    z-index: 99;
+    opacity: 0;
+    pointer-events: none;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: hsla(0, 0%, 0%, 0.8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: 0.3s ease;
+}
+.smodal-wrapper {
+    display: flex;
+    flex-direction: column;
+    border-radius: 8px;
+    padding: 32px 38px 32px;
+    background: linear-gradient(to top, hsl(0, 0%, 0%), hsl(0, 0%, 8%), hsl(0, 0%, 0%));
+    border: 1px solid hsl(0, 0%, 15%);
+    max-width: calc(100% - 2%);
+    width: 650px;
+    position: relative;
+    opacity: 0;
+    transform: scale(0.4);
+    transition: 0.3s ease;
+}
+.smodal-blur {
+    display: block;
+    z-index: 2;
+    opacity: 0.05;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 14px;
+    background: url(https://framerusercontent.com/images/rR6HYXBrMmX4cRpXfXUOvpvpB0.png);
+    background-size: 128px;
+    background-repeat: repeat;
+    transition: 0.5s ease;
+}
+i.smodal-x {
+    z-index: 5;
+    cursor: pointer;
+    position: absolute;
+    top: 24px;
+    right: 24px;
+    font-size: 20px;
+}
+.smodal-content {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    z-index: 3;
+}
+i.smodal-icon {
+    background-color: hsl(0, 0%, 100%);
+    color: hsl(0, 0%, 9%);
+    font-size: 20px;
+    width: 50px;
+    height: 50px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.smodal-head {
+    margin: 22px 0 15px;
+    color: white;
+    font-size: 30px;
+    font-weight: 500;
+}
+.smodal-txt {
+    font-size: 17px;
+    color: hsl(0, 0%, 85%);
+    line-height: 1.65;
+    margin-bottom: 36px;
+}
+.smodal-eyebrow {
+    align-self: flex-start;
+}
+.smodal-col {
+    margin: 20px 0 28px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+.smodal-point {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    color: white;
+    font-size: 16px;
+}
+i.smodal-check {
+    background: linear-gradient(to top, black, hsl(0, 0%, 14%));
+    border: 1px solid hsl(0, 0%, 15%);
+    width: 32px;
+    height: 32px;
+    border-radius: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+    color: white;
+}
+.btn-smodal {
+    align-self: flex-start;
+    margin-top: 15px;
+    cursor: pointer;
+    border-radius: 8px;
+    padding: 14px 20px;
+    font-size: 18px;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    transition: 0.2s ease;
+    background: linear-gradient(90deg,
+        #0f36ac,   /* Royal Blue */
+        #8A2BE2,   /* Blue Violet */
+        #ff0000    /* Pink-Red */
+    );
+    background-size: cover;
+}
+.smodal-target1, .smodal-target2, .smodal-target3 {
+    position: relative;
+    top: 50px;
+    opacity: 0;
+    filter: blur(10px);
+    transition: 0.3s ease;
+}
 /* ================================== */
 
 /* ===== OUR WORKS Section ===== */
@@ -1360,9 +1496,19 @@ i.time-x {
     cursor: pointer;
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
+    margin: 12px 0;
     font-size: 15px;
     text-decoration: underline;
+}
+.admin-input {
+    width: 200px;
+    margin-right: 12px;
+    display: inline-block;
+    background-color: transparent;
+    outline: 0;
+    border: 1px solid white;
+    padding: 2px 8px;
 }
 
 .form-wrapper {
@@ -2136,10 +2282,32 @@ i.book-delete-icon {
         font-size: 15px;
     }
 
-.grid-bg {
-    height: 480px;
-    opacity: 0.2;
-}
+    .grid-bg {
+        height: 480px;
+        opacity: 0.2;
+    }
+
+    .smodal-modal {
+        align-items: flex-end;
+        padding-bottom: 25px;
+    }
+    .smodal-wrapper {
+        padding: 32px 14px;
+    }
+    i.smodal-icon {
+        width: 40px;
+        height: 40px;
+
+    }
+    .smodal-head {
+        font-size: 24px;
+    }
+    .smodal-txt {
+        font-size: 14px;
+    }
+    .smodal-point {
+        font-size: 14px;
+    };
 }
 
 @media (hover: hover) and (pointer: fine) {

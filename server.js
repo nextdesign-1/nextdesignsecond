@@ -147,6 +147,7 @@ app.post("/api/get-bookings", (req, res) => {
     } else {
         likeStr = "%" + req.body.year + "-" + String(req.body.month) + "%";
     }
+    const date = req.body.date;
 
 
     const getBookingsQuery = "select * from bookings where booking_date like ?";
@@ -156,7 +157,15 @@ app.post("/api/get-bookings", (req, res) => {
             return res.json({ bookings: [] });
         }
 
-        return res.json({ bookings: result });
+        const getExtraSlots = "select * from extra_slots where booking_date = ?";
+        db.query(getExtraSlots, [date], (err, result) => {
+            if(err){
+                console.error("Error getting exctra slos: " + err);
+            }
+
+
+            return res.json({ bookings: result, extraSlots: result });
+        });
     });
 });
 
@@ -180,7 +189,7 @@ app.post("/api/check-slots", (req, res) => {
             }); 
             return res.json({ message: 'success', times: timesTaken });
         } else {
-            return res.json({ message: 'failure', times: timesTaken});
+            return res.json({ message: 'success', times: timesTaken});
         }
     });
 });
@@ -305,6 +314,21 @@ app.post("/api/remove-slot", requireAdmin, (req, res) => {
     db.query(closeQuery, values, (err, result) => {
         if(err){
             console.error("Error removing slot: " + err);
+            return res.json({ message: 'failure' });
+        }
+
+        return res.json({ message: 'success' });
+    });
+});
+
+app.post("/api/create-slot", requireAdmin, (req, res) => {
+    const date = req.body.date;
+    const time = req.body.time;
+
+    const insertQuery = "insert into extra_slots (booking_time, booking_date) values (?, ?)";
+    db.query(insertQuery, [date, time], (err, result) => {
+        if(err){
+            console.error("Error inserting extra slot: " + err);
             return res.json({ message: 'failure' });
         }
 
