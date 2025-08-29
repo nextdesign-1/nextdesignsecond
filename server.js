@@ -325,7 +325,7 @@ app.post("/api/create-slot", requireAdmin, (req, res) => {
     const date = req.body.date;
     const time = req.body.time;
 
-    const insertQuery = "insert into extra_slots (booking_time, booking_date) values (?, ?)";
+    const insertQuery = "insert into extra_slots (booking_date, booking_time) values (?, ?)";
     db.query(insertQuery, [date, time], (err, result) => {
         if(err){
             console.error("Error inserting extra slot: " + err);
