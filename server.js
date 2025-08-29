@@ -103,8 +103,8 @@ function generateNumber(){
 }
 function requireAdmin(req, res, next){
     const code = req.query.code;
-    if(code == process.env.ADMIN_CODE){
-    } else if(code != process.env.ADMIN_CODE) {
+    if(code != process.env.ADMIN_CODE) {
+        console.log("admin fail");
         return res.json({ message: 'failure' });
     }
     next();

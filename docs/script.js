@@ -928,7 +928,7 @@ if(document.querySelector(".book-container")){
                 let fullDate = currentYear + "-" + monStr + "-" + dateStr;
                 const dataToSend = { date: fullDate, time: input.value };
                 try {
-                    const response = await fetch(url + '/api/create-slot', {
+                    const response = await fetch(url + `/api/create-slot?admin=${params.get("admin")}&code=${params.get("code")}`, {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json', 
