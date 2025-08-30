@@ -11,7 +11,7 @@ const crypto = require('crypto');
 const e = require('express');
 const cors = require('cors');
 
-const url = "https://nextdesignwebsite.com";
+const url = "https://nextdesignwebsite.com"; // https://nextdesignwebsite.com   http://localhost:3000
 
 const db = mysql.createPool({
     host: process.env.DB_HOST,
@@ -147,7 +147,6 @@ app.post("/api/get-bookings", (req, res) => {
     } else {
         likeStr = "%" + req.body.year + "-" + String(req.body.month) + "%";
     }
-    const date = req.body.date;
 
 
     const getBookingsQuery = "select * from bookings where booking_date like ?";
@@ -157,15 +156,20 @@ app.post("/api/get-bookings", (req, res) => {
             return res.json({ bookings: [] });
         }
 
-        const getExtraSlots = "select * from extra_slots where booking_date = ?";
-        db.query(getExtraSlots, [date], (err, result) => {
-            if(err){
-                console.error("Error getting exctra slos: " + err);
-            }
+        return res.json({ bookings: result });
+    });
+});
 
+app.post("/api/extra-slots", (req, res) => {
+    const date = req.body.date;
 
-            return res.json({ bookings: result, extraSlots: result });
-        });
+    const getExtraSlots = "select * from extra_slots where booking_date = ?";
+    db.query(getExtraSlots, [date], (err, result) => {
+        if(err){
+            console.error("Error getting extra slots: " + err);
+        }
+
+        return res.json({ slots: result });
     });
 });
 

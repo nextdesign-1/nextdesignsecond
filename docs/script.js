@@ -377,8 +377,8 @@ if(document.querySelector(".book-container")){
             if(dateStr.length == 1){
                 dateStr = "0" + dateStr;
             }
-            let fullDate = currentYear + "-" + monStr + "-" + dateStr;
-            const dataToSend = { month: monthIdx + 1, year: yearStr, date: fullDate };
+            let fullDate = currentYear + "-" + monStr + "-";
+            const dataToSend = { month: monthIdx + 1, year: yearStr };
             try {
                 const response = await fetch(url + '/api/get-bookings', {
                     method: 'POST',
@@ -397,7 +397,6 @@ if(document.querySelector(".book-container")){
 
                 const responseData = await response.json();
                 bookings = responseData.bookings;
-                const extraSlots = responseData.extraSlots;
 
                 document.querySelectorAll(".cal-box").forEach((box, idx) => {
                     box.classList.remove("cal-active");
@@ -416,11 +415,6 @@ if(document.querySelector(".book-container")){
                             box.classList.remove("cal-inactive");
                             if(firstCall){
                                 todayBox = box;
-                                let allSlots = schedule[(Number(box.textContent) + (startIdx - 1)) % 7];
-                                extraSlots.forEach(obj => {
-                                    allSlots.push(obj.booking_time);
-                                });
-                                makeSlots(allSlots);
                             }
                         } else if(monthIdx == startPosition && Number(box.textContent) > todayDate){
                             box.classList.remove("cal-inactive");
@@ -428,6 +422,7 @@ if(document.querySelector(".book-container")){
                             box.classList.add("cal-active");
                             box.classList.remove("cal-inactive");
                         }
+
 
                         let todayBookings = 0;
                         bookings.forEach(booking => {
@@ -438,19 +433,11 @@ if(document.querySelector(".book-container")){
                         if(todayBookings == schedule[(Number(box.textContent) + (startIdx - 1)) % 7].length){
                             box.classList.add("cal-disabled");
 
-                            if(Number(box.textContent) >= todayDate){
+                            if(Number(box.textContent) >= todayDate || monthIdx != startPosition){
                                 box.style.pointerEvents = "auto";
                             }
                         }
                     }
-
-                    box.addEventListener("click", () => {
-                        let allSlots = schedule[(Number(box.textContent) + (startIdx - 1)) % 7];
-                        extraSlots.forEach(obj => {
-                            allSlots.push(obj.booking_time);
-                        });
-                        makeSlots(allSlots);
-                    });
                 });
 
                 if(document.querySelector(".last-cal-flex").querySelectorAll(".cal-inactive").length < 7){
@@ -467,7 +454,6 @@ if(document.querySelector(".book-container")){
         }
         getBookings();
     }
-    setCalendar(currentMonth, currentYear, true);
     function changeMonth(direction){
         if(direction == "right"){
             currentMonth++;
@@ -657,6 +643,7 @@ if(document.querySelector(".book-container")){
             dateStr = "0" + dateStr;
         }
         let fullDate = currentYear + "-" + monStr + "-" + dateStr;
+        extraSlots(fullDate.slice(0, 8), document.querySelector(".cal-active"));
         const dataToSend = { date: fullDate };
         try {
             const response = await fetch(url + '/api/check-slots', {
@@ -697,7 +684,6 @@ if(document.querySelector(".book-container")){
                 });
                 if(responseData.times != ""){
                     const timesTaken = responseData.times.split(",,");
-                    console.log(timesTaken);
                     timesTaken.forEach(time => {
                         document.querySelectorAll(".time-wrapper").forEach(wrapper => {
                             if(wrapper.textContent.replace(/ /g, "") == time){
@@ -715,9 +701,11 @@ if(document.querySelector(".book-container")){
                     }
                 });
                 if(!bookingFound){
+                    document.getElementById("closedMsg").style.display = "block";
                     document.getElementById("adminDelete").textContent = "open day";
                     document.getElementById("adminDelete").onclick = openDay;
                 } else {
+                    document.getElementById("closedMsg").style.display = "none";
                     document.getElementById("adminDelete").textContent = "close day";
                     document.getElementById("adminDelete").onclick = closeAllBookings;
                 }
@@ -726,6 +714,39 @@ if(document.querySelector(".book-container")){
             console.error('Error posting data:', error);
         }
     }
+    async function extraSlots(date, box) {
+        let dateStr = box.textContent;
+        if(dateStr.length == 1){
+            dateStr = "0" + dateStr;
+        }
+        date += dateStr;
+        const dataToSend = { date: date };
+        try {
+            const response = await fetch('/api/extra-slots', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json', 
+                },
+                body: JSON.stringify(dataToSend), 
+            });
+
+            if (!response.ok) {
+                const errorData = await response.json();
+                console.error('Error:', errorData.message);
+                return;
+            }
+
+            const data = await response.json();
+            let allSlots = schedule[(Number(box.textContent) + (startIdx - 1)) % 7];
+            data.slots.forEach(obj => {
+                allSlots.push(obj.booking_time);
+            });
+            makeSlots(allSlots);
+        } catch (error) {
+            console.error('Error posting data:', error);
+        }
+    }
+    setCalendar(currentMonth, currentYear, true);
 
     if(params.get("admin") == "true" && params.get("code")){
         async function getCode() {
@@ -975,7 +996,6 @@ if(document.querySelector(".book-container")){
     }
 
     if(params.get("cancel")){
-        console.log(params.get("cancel"));
         async function verifyCode() {
             const dataToSend = { code: params.get("cancel") };
             try {

@@ -1368,9 +1368,13 @@ i.meet-email {
     justify-content: space-between;
 }
 .nav-arrow {
+    cursor: pointer;
     height: 12px;
     width: auto;
     filter: invert(0.5);
+}
+.nav-arrow:hover {
+    filter: invert(0);
 }
 .cal-nav-head {
     font-size: 22px;
