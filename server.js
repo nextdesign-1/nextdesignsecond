@@ -11,7 +11,7 @@ const crypto = require('crypto');
 const e = require('express');
 const cors = require('cors');
 
-const url = "https://nextdesignwebsite.com"; // https://nextdesignwebsite.com   http://localhost:3000
+const url = "http://localhost:3000"; // https://nextdesignwebsite.com   
 
 const db = mysql.createPool({
     host: process.env.DB_HOST,
@@ -29,7 +29,7 @@ db.query('SELECT 1', (err, results) => {
 });
 
 app.use(cors({
-    origin: 'https://nextdesignwebsite.com', // GitHub Pages root domain
+    origin: 'http://localhost:3000', // GitHub Pages root domain
     credentials: true
 }));
 
