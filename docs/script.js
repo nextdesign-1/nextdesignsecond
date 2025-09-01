@@ -486,6 +486,7 @@ if(document.querySelector(".book-container")){
         return new Date(year, monthIdx + 1, 0).getDate();
     }
     function makeSlots(times){
+        console.log("MAKE SLOTS CALLED");
         document.querySelector(".time-ul").innerHTML = "";
         times.forEach(time => {
             document.querySelector(".time-ul").innerHTML += `<div class="time-wrapper">${time} <i class="fa-solid fa-xmark time-x" onclick="closeShowModal()"></i></div>`;
@@ -749,6 +750,7 @@ if(document.querySelector(".book-container")){
             data.slots.forEach(obj => {
                 allSlots.push(obj.booking_time);
             });
+            console.log(allSlots);
             makeSlots(allSlots);
         } catch (error) {
             console.error('Error posting data:', error);
