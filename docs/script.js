@@ -364,6 +364,7 @@ if(document.querySelector(".book-container")){
         });
     });
     function setCalendar(monthIdx, yearStr, firstCall){
+        console.log("SET CALENDAR CALLED");
         document.querySelector(".cal-nav-head").textContent = months[monthIdx] + " " + yearStr;
 
         startIdx = firstDay(monthIdx, yearStr);
@@ -448,7 +449,6 @@ if(document.querySelector(".book-container")){
                     document.querySelector(".last-cal-flex").style.display = "none";
                 }
                 
-
                 checkSlots();
             } catch (error) {
                 console.error('Error posting data:', error);
@@ -636,6 +636,7 @@ if(document.querySelector(".book-container")){
         }
     }
     async function checkSlots() {
+        console.log("CHECK SLOTS CALLED");
         let monStr = String(currentMonth + 1);
         if(monStr.length == 1){
             monStr = "0" + monStr;
@@ -663,8 +664,10 @@ if(document.querySelector(".book-container")){
                 return;
             }
 
+            console.log("CHECK SLOTS REQ");
             const responseData = await response.json();
             if(responseData.message == "success") {
+                console.log("CHECK SLOTS RES");
                 const ukTime = new Date().toLocaleTimeString('en-GB', {
                     timeZone: 'Europe/London',
                     hour: '2-digit',
@@ -717,6 +720,7 @@ if(document.querySelector(".book-container")){
         }
     }
     async function extraSlots(date, box) {
+        console.log("EXTRA SLOTS CALLED");
         let dateStr = box.textContent;
         if(dateStr.length == 1){
             dateStr = "0" + dateStr;
@@ -738,7 +742,9 @@ if(document.querySelector(".book-container")){
                 return;
             }
 
+            console.log("EXTRA SLOTS REQ");
             const data = await response.json();
+            console.log("CHECK SLOTS RES");
             let allSlots = schedule[(Number(box.textContent) + (startIdx - 1)) % 7];
             data.slots.forEach(obj => {
                 allSlots.push(obj.booking_time);
@@ -750,7 +756,7 @@ if(document.querySelector(".book-container")){
     }
     setTimeout(() => {
         setCalendar(currentMonth, currentYear, true);
-    }, 500);
+    }, 2000);
 
     if(params.get("admin") == "true" && params.get("code")){
         async function getCode() {
