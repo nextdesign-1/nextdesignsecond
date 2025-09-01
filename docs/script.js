@@ -243,13 +243,15 @@ document.querySelectorAll(".work-border").forEach(target => {
 });
 
 function expandFinTxt(){
-    document.getElementById("finReadMore").style.display = "none";
-    document.querySelector(".meet-box-overflow").style.maxHeight = "950px";
+    document.getElementById("finReadMore").classList.add("display-none");
+    document.getElementById("finMobile").classList.add("display-none");
+    document.querySelector(".meet-box-overflow").style.maxHeight = "1550px";
 }
 function hideFinTxt(){
     document.querySelector(".meet-box-overflow").style.maxHeight = "525px";
     setTimeout(() => {
-        document.getElementById("finReadMore").style.display = "block";
+        document.getElementById("finReadMore").classList.remove("display-none");
+        document.getElementById("finMobile").classList.remove("display-none");
     }, 200);
 }
 
@@ -722,7 +724,7 @@ if(document.querySelector(".book-container")){
         date += dateStr;
         const dataToSend = { date: date };
         try {
-            const response = await fetch('/api/extra-slots', {
+            const response = await fetch(url + '/api/extra-slots', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json', 

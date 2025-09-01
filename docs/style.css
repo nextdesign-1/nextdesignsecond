@@ -1135,6 +1135,14 @@ span.meet-fin-txt {
     text-underline-offset: 2px;
     cursor: pointer;
 }
+@media only screen and (min-width: 650px){
+    #finMobile {
+        display: none;
+    }
+}
+.display-none {
+    display: none;
+}
 .meet-pfp-box {
     max-height: 525px;
     padding: 35px;
@@ -1187,6 +1195,8 @@ i.meet-email {
     position: absolute;
     bottom: 0;
     right: 0;
+    width: 430px;
+    height: auto;
 }
 .meet-box-light {
     min-height: 680px;
@@ -2315,6 +2325,13 @@ i.book-delete-icon {
     .smodal-point {
         font-size: 14px;
     };
+
+    #finReadMore {
+        display: none;
+    }
+    .meet-box-overflow {
+        max-height: 500px;
+    }
 }
 
 @media (hover: hover) and (pointer: fine) {
