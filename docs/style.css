@@ -2332,6 +2332,9 @@ i.book-delete-icon {
     .meet-box-overflow {
         max-height: 500px;
     }
+    .meet-pfp {
+        width: 290px;
+    }
 }
 
 @media (hover: hover) and (pointer: fine) {
