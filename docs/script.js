@@ -350,7 +350,7 @@ const startPosition = now.getMonth();
 let currentMonth = now.getMonth();
 const startYear = now.getFullYear().toString();
 let currentYear = now.getFullYear().toString();
-let url = ""; // https://nextdesignsecond.onrender.com
+let url = "https://nextdesignsecond.onrender.com"; // https://nextdesignsecond.onrender.com
 let startIdx;
 
 if(document.querySelector(".book-container")){
