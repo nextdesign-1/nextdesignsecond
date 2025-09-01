@@ -744,7 +744,7 @@ if(document.querySelector(".book-container")){
 
             console.log("EXTRA SLOTS REQ");
             const data = await response.json();
-            console.log("CHECK SLOTS RES");
+            console.log("EXTRA SLOTS RES");
             let allSlots = schedule[(Number(box.textContent) + (startIdx - 1)) % 7];
             data.slots.forEach(obj => {
                 allSlots.push(obj.booking_time);
