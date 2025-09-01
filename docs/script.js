@@ -645,7 +645,7 @@ if(document.querySelector(".book-container")){
             dateStr = "0" + dateStr;
         }
         let fullDate = currentYear + "-" + monStr + "-" + dateStr;
-        extraSlots(fullDate.slice(0, 8), document.querySelector(".cal-active"));
+        await extraSlots(fullDate.slice(0, 8), document.querySelector(".cal-active"));
         const dataToSend = { date: fullDate };
         try {
             const response = await fetch(url + '/api/check-slots', {
@@ -748,7 +748,9 @@ if(document.querySelector(".book-container")){
             console.error('Error posting data:', error);
         }
     }
-    setCalendar(currentMonth, currentYear, true);
+    setTimeout(() => {
+        setCalendar(currentMonth, currentYear, true);
+    }, 500);
 
     if(params.get("admin") == "true" && params.get("code")){
         async function getCode() {
