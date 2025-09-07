@@ -76,7 +76,9 @@ function createHtml(){
     document.body.prepend(header);
     document.body.appendChild(footer);
 }
-createHtml();
+if(!document.querySelector(".lac-container")){
+    createHtml();
+}
 
 function openMenu(){
     document.querySelector(".menu-container").style.opacity = "1";
@@ -318,6 +320,9 @@ const months = [
   "January", "February", "March", "April", "May", "June",
   "July", "August", "September", "October", "November", "December"
 ];
+const days = [
+  "Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"
+];
 const schedule = [
   ["18:30", "19:00", "19:30", "20:00", "20:30", "21:00", "21:30", "22:00"],
 
@@ -342,14 +347,28 @@ const schedule = [
 const now = new Date();
 let currentSchedule;
 const todayDate = now.getDate();
+let currentDate = todayDate;
 const startPosition = now.getMonth();
 let currentMonth = now.getMonth();
 const startYear = now.getFullYear().toString();
 let currentYear = now.getFullYear().toString();
-let url = "https://nextdesignsecond.onrender.com"; // https://nextdesignsecond.onrender.com
+let adminActive = false;
+let adminTime;
+let adminYear;
+let adminMonth;
+let adminDate;
+let url = ""; 
+let frontendUrl = "";
+if(window.location.href.includes("localhost")) {
+    url = ""; 
+    frontendUrl = "http://localhost:3000"; 
+} else {
+    url = "https://nextdesignsecond.onrender.com"; 
+    frontendUrl = "https://nextdesignwebsite.com"; 
+}
 let startIdx;
 
-if(document.querySelector(".book-container")){
+if(document.querySelector(".book-container") || document.querySelector(".lac-container")){
     document.querySelectorAll(".cal-box").forEach(box => {
         box.addEventListener("click", () => {
             document.querySelectorAll(".cal-box").forEach(other => {
@@ -406,17 +425,17 @@ if(document.querySelector(".book-container")){
                         box.classList.remove("cal-inactive");
                         box.textContent = String(idx - (startIdx - 1));
 
-                        if(monthIdx == startPosition && Number(box.textContent) < todayDate){
+                        if(yearStr == startYear && monthIdx == startPosition && Number(box.textContent) < todayDate){
                             box.classList.add("cal-disabled");
-                        } else if(monthIdx == startPosition && Number(box.textContent) == todayDate){
+                        } else if(yearStr == startYear && monthIdx == startPosition && Number(box.textContent) == todayDate){
                             box.classList.add("cal-active");
                             box.classList.remove("cal-inactive");
                             if(firstCall){
                                 todayBox = box;
                             }
-                        } else if(monthIdx == startPosition && Number(box.textContent) > todayDate){
+                        } else if(yearStr == startYear && monthIdx == startPosition && Number(box.textContent) > todayDate){
                             box.classList.remove("cal-inactive");
-                        } else if(monthIdx != startPosition && Number(box.textContent) == 1){
+                        } else if((monthIdx != startPosition || yearStr != startYear) && Number(box.textContent) == 1){
                             box.classList.add("cal-active");
                             box.classList.remove("cal-inactive");
                         }
@@ -428,7 +447,7 @@ if(document.querySelector(".book-container")){
                                 todayBookings++;
                             }
                         });
-                        if(todayBookings == schedule[(Number(box.textContent) + (startIdx - 1)) % 7].length){
+                        if(todayBookings >= schedule[(Number(box.textContent) + (startIdx - 1)) % 7].length){
                             box.classList.add("cal-disabled");
 
                             if(Number(box.textContent) >= todayDate || monthIdx != startPosition){
@@ -585,21 +604,29 @@ if(document.querySelector(".book-container")){
     ////////////////
 
     async function postBooking(){
-        let monStr = String(currentMonth + 1);
-        if(monStr.length == 1){
-            monStr = "0" + monStr;
+        let fullDate;
+        let fullTime;
+        if(adminActive){
+            fullDate = adminYear + "-" + adminMonth + "-" + adminDate;
+            fullTime = adminTime;
+        } else {   
+            let monStr = String(currentMonth + 1);
+            if(monStr.length == 1){
+                monStr = "0" + monStr;
+            }
+            let dateStr = document.querySelector(".cal-active").textContent;
+            if(dateStr.length == 1){
+                dateStr = "0" + dateStr;
+            }
+            fullDate = currentYear + "-" + monStr + "-" + dateStr;
+            fullTime = document.querySelector(".time-active").textContent;
         }
-        let dateStr = document.querySelector(".cal-active").textContent;
-        if(dateStr.length == 1){
-            dateStr = "0" + dateStr;
-        }
-        let fullDate = currentYear + "-" + monStr + "-" + dateStr;
-        const fullTime = document.querySelector(".time-active").textContent;
         const emailTxt = document.querySelector(".form-email").value;
+        const phoneTxt = document.querySelector(".form-phone").value;
         if(document.querySelector(".form-area").value.length > 0){
             bookingMessage = document.querySelector(".form-area").value;
         }
-        const dataToSend = { date: fullDate, time: fullTime, email: emailTxt, message: bookingMessage, type: 'user' };
+        const dataToSend = { date: fullDate, time: fullTime, email: emailTxt, phone: phoneTxt, message: bookingMessage, type: 'user' };
         try {
             const response = await fetch(url + '/api/book-appointment', {
                 method: 'POST',
@@ -618,6 +645,9 @@ if(document.querySelector(".book-container")){
 
             const responseData = await response.json();
             if(responseData.message == "success"){
+                if(adminActive){
+                    closeAdminModal();
+                }
                 document.querySelector(".book-modal").style.opacity = "1";
                 document.querySelector(".book-modal").style.pointerEvents = "auto";
             } else {
@@ -738,33 +768,19 @@ if(document.querySelector(".book-container")){
             data.slots.forEach(obj => {
                 allSlots.push(obj.booking_time);
             });
+            allSlots.sort((a, b) => a.localeCompare(b));
             makeSlots(allSlots);
         } catch (error) {
             console.error('Error posting data:', error);
         }
     }
-    setTimeout(() => {
-        setCalendar(currentMonth, currentYear, true);
-    }, 500);
+    if(!document.querySelector(".lac-container")){
+        setTimeout(() => {
+            setCalendar(currentMonth, currentYear, true);
+        }, 500);
+    }
 
     if(params.get("admin") == "true" && params.get("code")){
-        async function getCode() {
-            try {
-                const response = await fetch(url + `/api/admin-code?admin=${params.get("admin")}&code=${params.get("code")}`);
-                const data = await response.json(); 
-                if(data.message == "failure"){
-                    window.location.href = "/index.html";
-                } else {
-                    setTimeout(() => {
-                        document.querySelectorAll(".admin-element, i.admin-element").forEach(element => element.style.display = "flex");
-                    }, 800);
-                }
-            } catch (error) {
-                console.error('Error fetching data:', error);
-            }
-        }
-        getCode();
-
         function closeAllBookings(){
             async function requestClose(){
                 let monStr = String(currentMonth + 1);
@@ -1047,7 +1063,11 @@ if(document.querySelector(".book-container")){
 
                     const responseData = await response.json();
                     if(responseData.message == "success"){
-                        window.location.href = "/";
+                        if(params.get("admin") && params.get("code")){
+                            window.location.href = "/admin.html?admin=true&code=" + params.get("code");
+                        } else {
+                            window.location.href = "/";
+                        }
                     }
                 } catch (error) {
                     console.error('Error posting data:', error);
@@ -1056,4 +1076,370 @@ if(document.querySelector(".book-container")){
             requestDelete();
         }
     }
+
+    function setLac(dateNumber, monthIdx, yearStr){ // params of today
+        document.querySelector(".lac-nav-title").textContent = months[monthIdx] + " " + yearStr;
+
+        const maxDays = totalDays(monthIdx, yearStr);
+        let dateDay =  dateNumber;
+        if(dateDay.length == 1){
+            dateDay = "0" + dateNumber;
+        }
+
+        const todayIdx = getDateDay(dateNumber, monthIdx, yearStr); // 1
+        const todayStr = days[todayIdx]; // 'Tue'
+        for(let i = 0; i < 7; i++){
+            let topDateNumber = dateNumber + i;
+            if(topDateNumber > maxDays){
+                topDateNumber = topDateNumber - maxDays;
+            }
+            let topDayIdx = todayIdx + i;
+            if(topDayIdx > 6){
+                topDayIdx = topDayIdx - 7;
+            }
+            document.querySelectorAll("div.lac-top-mon")[i].innerHTML = `${days[topDayIdx]}<span class="lac-top-mon">${topDateNumber}</span>`;
+            if(topDateNumber == todayDate && monthIdx == startPosition && yearStr == startYear){
+                document.querySelectorAll("span.lac-top-mon")[i].classList.add("lac-mon-active");
+            } 
+        }
+
+        async function getBookings() {
+            const dataToSend = { month: monthIdx + 1, year: yearStr };
+            try {
+                const response = await fetch(url + '/api/get-bookings', {
+                    method: 'POST',
+                    credentials: 'include',
+                    headers: {
+                        'Content-Type': 'application/json', 
+                    },
+                    body: JSON.stringify(dataToSend), 
+                });
+
+                if (!response.ok) {
+                    const errorData = await response.json();
+                    console.error('Error:', errorData.message);
+                    return;
+                }
+
+                const data = await response.json();
+                let bookings = data.bookings;
+                console.log(bookings);
+                let adminAmounts = [0, 0, 0, 0, 0, 0, 0];
+                let boxDate;
+                document.querySelectorAll(".lac-flex").forEach((flex, flexIdx) => {
+                    let rowTime = flex.id.slice(5);
+                    flex.querySelectorAll(".lac-box").forEach((box, idx) => {
+                        let monStr = String(currentMonth + 1);
+                        if(monStr.length == 1){
+                            monStr = "0" + monStr;
+                        }
+                        let dateStr = document.querySelectorAll("span.lac-top-mon")[idx].textContent;
+                        if(dateStr.length == 1){
+                            dateStr = "0" + dateStr;
+                        }
+                        boxDate = currentYear + "-" + monStr + "-" + dateStr;
+                        let emptyBox = true;
+                        bookings.forEach(booking => {
+                            if(booking.booking_date == boxDate && booking.booking_time == rowTime){
+                                emptyBox = false;
+                                if(booking.booking_type == "user"){
+                                    let finishTime = booking.booking_time.slice(0, 3) + String(Number(booking.booking_time.slice(3)) + 30);
+                                    if((Number(booking.booking_time.slice(3)) + 30) > 59){
+                                        let finishStart = String(Number(booking.booking_time.slice(0, 2)) + 1);
+                                        if(finishStart.length == 1){
+                                            finishStart = "0" + finishStart;
+                                        }
+                                        let finishEnd = String((Number(booking.booking_time.slice(3)) + 30) - 60);
+                                        if(finishEnd.length == 1){
+                                            finishEnd = "0" + finishEnd;
+                                        }
+                                        finishTime = finishStart + ":" + finishEnd;
+                                    }
+                                    box.innerHTML = `
+                                        <div class="lac-slot">
+                                        <div class="lac-slot-scroll">
+                                            <div class="lac-slot-time">${booking.booking_time} - ${finishTime}</div>
+                                            <div class="lac-slot-email">${booking.email}</div>
+                                            <div class="lac-slot-txt">Phone: ${booking.phone_number}</div>
+                                            
+                                            <div class="btn-lac-remove" onclick="window.location.href = '${frontendUrl}/admin.html?cancel=${booking.cancel_code}&admin=true&code=${params.get("code")}'">Remove Booking</div>
+                                        </div>
+                                        </div>
+                                    `;
+                                    box.querySelector(".lac-slot").style.height = "calc(100% - 10px)";
+                                } else if(booking.booking_type == "admin"){
+                                    adminAmounts[idx]++;
+                                    box.innerHTML = `
+                                        <div class="lac-slot-time" style="text-decoration: line-through;">${booking.booking_time}</div>
+                                        <div class="lac-slot-txt">Slot Closed</div>
+                                        <div class="btn-lac-open">Open Slot</div>
+                                    `;
+                                    box.querySelector(".btn-lac-open").onclick = function(){
+                                        async function openCard() {
+                                            const dataToSend = { id: booking.id };
+                                            try {
+                                                const response = await fetch(url + `/api/open-slot?admin=${params.get("admin")}&code=${params.get("code")}`, {
+                                                    method: 'POST',
+                                                    credentials: 'include',
+                                                    headers: {
+                                                        'Content-Type': 'application/json', 
+                                                    },
+                                                    body: JSON.stringify(dataToSend), 
+                                                });
+
+                                                if (!response.ok) {
+                                                    const errorData = await response.json();
+                                                    console.error('Error:', errorData.message);
+                                                    return;
+                                                }
+
+                                                const responseData = await response.json();
+                                                setLac(currentDate, currentMonth, currentYear);
+                                            } catch (error) {
+                                                console.error('Error posting data:', error);
+                                            }
+                                        }
+                                        openCard();
+                                    }
+                                }
+                            } 
+                        });
+                        if(emptyBox){
+                            let dayTxt = document.querySelectorAll("div.lac-top-mon")[idx].innerHTML.slice(0, 3); // Wed
+                            let dayIdx;
+                            days.forEach((day, idxOfWeek) => {
+                                if(dayTxt == day){
+                                    dayIdx = idxOfWeek;
+                                }
+                            });
+                            let midBtn = `<div class="btn-lac-add lac-hover-el">Add This Time</div>`;
+                            schedule[dayIdx].forEach(time => {
+                                if(time == rowTime){
+                                    midBtn = "";
+                                }
+                            });
+                            box.innerHTML = `
+                                <div class="btn-lac-open lac-hover-el">Make a Booking</div>
+                                ${midBtn}
+                                <div class="btn-lac-remove lac-hover-el">Close Slot</div>
+                            `
+                            let monStr = String(currentMonth + 1);
+                            if(monStr.length == 1){
+                                monStr = "0" + monStr;
+                            }
+                            let dateStr = document.querySelectorAll("span.lac-top-mon")[idx].textContent;
+                            if(dateStr.length == 1){
+                                dateStr = "0" + dateStr;
+                            }
+                            let rnDate = currentYear + "-" + monStr + "-" + dateStr;
+                            box.querySelector(".btn-lac-remove").onclick = function(){
+                                async function removeSlot() {
+                                    const dataToSend = { date: rnDate, time: rowTime };
+                                    try {
+                                        const response = await fetch(url + `/api/remove-slot?admin=${params.get("admin")}&code=${params.get("code")}`, {
+                                            method: 'POST',
+                                            credentials: 'include',
+                                            headers: {
+                                                'Content-Type': 'application/json', 
+                                            },
+                                            body: JSON.stringify(dataToSend), 
+                                        });
+
+                                        if (!response.ok) {
+                                            const errorData = await response.json();
+                                            console.error('Error:', errorData.message);
+                                            return;
+                                        }
+
+                                        const responseData = await response.json();
+                                        if(responseData.message == "success"){
+                                            setLac(currentDate, currentMonth, currentYear);
+                                        } else {
+                                            console.log(responseData.message);
+                                        }
+                                    } catch (error) {
+                                        console.error('Error posting data:', error);
+                                    }
+                                }
+                                removeSlot();
+                            }
+                            box.querySelector(".btn-lac-open").onclick = function(){
+                                document.querySelector(".admin-modal").style.opacity = "1";
+                                document.querySelector(".admin-modal").style.pointerEvents = "auto";
+                                adminActive = true;
+                                adminTime = rowTime;
+                                adminYear = currentYear;
+                                adminMonth = monStr;
+                                adminDate = dateStr;
+                            }
+                            if(box.querySelector(".btn-lac-add")){
+                                box.querySelector(".btn-lac-add").onclick = function(){
+                                    async function requestSlot() {
+                                        const dataToSend = { date: rnDate, time: rowTime };
+                                        try {
+                                            const response = await fetch(url + `/api/create-slot?admin=${params.get("admin")}&code=${params.get("code")}`, {
+                                                method: 'POST',
+                                                credentials: 'include',
+                                                headers: {
+                                                    'Content-Type': 'application/json', 
+                                                },
+                                                body: JSON.stringify(dataToSend), 
+                                            });
+
+                                            if (!response.ok) {
+                                                const errorData = await response.json();
+                                                console.error('Error:', errorData.message);
+                                                return;
+                                            }
+
+                                            const data = await response.json();
+                                            if(data.message == "success"){
+                                                document.querySelector(".book-add-modal").style.opacity = "1";
+                                                document.querySelector(".book-add-modal").style.pointerEvents = "auto";
+                                            } 
+
+                                        } catch (error) {
+                                            console.error('Error posting data:', error);
+                                        }
+                                    }
+                                    requestSlot();
+                                }
+                            }
+                        }
+                    });
+                });
+                adminAmounts.forEach((day, idx) => {
+                    let monStr = String(currentMonth + 1);
+                    if(monStr.length == 1){
+                        monStr = "0" + monStr;
+                    }
+                    let dateStr = document.querySelectorAll("span.lac-top-mon")[idx].textContent;
+                    if(dateStr.length == 1){
+                        dateStr = "0" + dateStr;
+                    }
+                    let fullDate = currentYear + "-" + monStr + "-" + dateStr;
+                    if(day == 34){
+                        document.querySelectorAll(".lac-box-space")[idx].textContent = "Open this day";
+                        document.querySelectorAll(".lac-box-space")[idx].onclick = function(){
+                            async function requestOpen() {
+                                const dataToSend = { date: fullDate };
+                                try {
+                                    const response = await fetch(url + `/api/open-day?admin=${params.get("admin")}&code=${params.get("code")}`, {
+                                        method: 'POST',
+                                        credentials: 'include',
+                                        headers: {
+                                            'Content-Type': 'application/json', 
+                                        },
+                                        body: JSON.stringify(dataToSend), 
+                                    });
+
+                                    if (!response.ok) {
+                                        const errorData = await response.json();
+                                        console.error('Error:', errorData.message);
+                                        return;
+                                    }
+
+                                    const responseData = await response.json();
+                                    setLac(currentDate, currentMonth, currentYear);
+                                } catch (error) {
+                                    console.error('Error posting data:', error);
+                                }
+                            }
+                            requestOpen();
+                        }
+                    } else {
+                        document.querySelectorAll(".lac-box-space")[idx].textContent = "Close this day";
+                        document.querySelectorAll(".lac-box-space")[idx].onclick = function(){
+                            async function requestClose(){
+                                const dataToSend = { date: fullDate };
+                                try {
+                                    const response = await fetch(url + `/api/close-all?admin=${params.get("admin")}&code=${params.get("code")}`, {
+                                        method: 'POST',
+                                        credentials: 'include',
+                                        headers: {
+                                            'Content-Type': 'application/json', 
+                                        },
+                                        body: JSON.stringify(dataToSend), 
+                                    });
+
+                                    if (!response.ok) {
+                                        const errorData = await response.json();
+                                        console.error('Error:', errorData.message);
+                                        return;
+                                    }
+
+                                    const responseData = await response.json();
+                                    setLac(currentDate, currentMonth, currentYear);
+                                } catch (error) {
+                                    console.error('Error posting data:', error);
+                                }
+                            }
+                            requestClose();
+                        }
+                    }
+                });
+            } catch (error) {
+                console.error('Error posting data:', error);
+            }
+        }
+        getBookings();
+    }
+    function getDateDay(dateNumber, monthIdx, yearStr){ // give 1 = Tue from yyyy-mm-dd
+        const date = new Date(parseInt(yearStr), monthIdx, dateNumber);
+        let day = date.getDay() - 1;
+        if(day == -1){
+            return 6;
+        } else {
+            return day;
+        }
+    }
+    function changeWeek(direction){
+        if(direction == "right"){
+            currentDate = currentDate + 7;
+            if(currentDate > totalDays(currentMonth, currentYear)){
+                currentDate = currentDate - totalDays(currentMonth, currentYear);
+                currentMonth++;
+                if(currentMonth == 12){
+                    currentMonth = 0;
+                    currentYear = String(Number(currentYear) + 1);
+                }
+            }
+        }
+        else if(currentDate != todayDate || currentMonth != startPosition || currentYear != startYear){
+            currentDate = currentDate - 7;
+            if(currentDate < 1){
+                currentMonth--;
+                currentDate = currentDate + totalDays(currentMonth, currentYear);
+                if(currentMonth == -1){
+                    currentMonth = 11;
+                    currentYear = String(Number(currentYear) - 1);
+                }
+            }
+        }
+
+        setLac(currentDate, currentMonth, currentYear);
+    }
+    function closeAdminModal(){
+        adminActive = false;
+        document.querySelector(".admin-modal").style.opacity = "0";
+        document.querySelector(".admin-modal").style.pointerEvents = "none";
+    }
+
+    if(document.querySelector(".lac-container")){
+        setLac(todayDate, currentMonth, currentYear);
+
+        async function getCode() {
+            try {
+                const response = await fetch(url + `/api/admin-code?admin=${params.get("admin")}&code=${params.get("code")}`);
+                const data = await response.json(); 
+                if(data.message == "failure"){
+                    window.location.href = "/index.html";
+                }
+            } catch (error) {
+                console.error('Error fetching data:', error);
+            }
+        }
+        getCode();
+    }
 }
+
