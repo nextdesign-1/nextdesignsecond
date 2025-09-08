@@ -764,11 +764,12 @@ if(document.querySelector(".book-container") || document.querySelector(".lac-con
             }
 
             const data = await response.json();
-            let allSlots = schedule[(Number(box.textContent) + (startIdx - 1)) % 7];
+            let allSlots = [...schedule[(Number(box.textContent) + (startIdx - 1)) % 7]];
             data.slots.forEach(obj => {
                 allSlots.push(obj.booking_time);
             });
             allSlots.sort((a, b) => a.localeCompare(b));
+            console.log(schedule);
             makeSlots(allSlots);
         } catch (error) {
             console.error('Error posting data:', error);
