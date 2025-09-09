@@ -1526,7 +1526,10 @@ i.time-x {
     padding: 2px 8px;
 }
 #closedMsg {
+    position: absolute;
+    left: 50%;
     top: 55px;
+    transform: translateX(-50%);
 }
 
 .form-wrapper {
