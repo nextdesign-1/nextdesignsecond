@@ -1437,6 +1437,7 @@ i.meet-email {
     pointer-events: none;
 }
 .time-col {
+    position: relative;
     width: 150px;
 }
 .time-head {
