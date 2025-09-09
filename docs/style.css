@@ -1525,6 +1525,9 @@ i.time-x {
     border: 1px solid white;
     padding: 2px 8px;
 }
+#closedMsg {
+    top: 55px;
+}
 
 .form-wrapper {
     position: relative;
@@ -2611,6 +2614,10 @@ span.lac-mon-active {
     }
     .lac-hover-el {
         opacity: 1;
+    }
+
+    #closedMsg {
+        top: 0px;
     }
 }
 
