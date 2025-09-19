@@ -385,7 +385,7 @@ if(window.location.href.includes("localhost")) {
     url = ""; 
     frontendUrl = "http://localhost:3000"; 
 } else {
-    url = "https://nextdesignsecond.onrender.com"; 
+    url = "https://nextdesignsecond-p1gb.onrender.com/"; 
     frontendUrl = "https://nextdesignwebsite.com"; 
 }
 let startIdx;
