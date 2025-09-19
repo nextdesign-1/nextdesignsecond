@@ -13,9 +13,9 @@ function createHtml(){
             <a href="team.html" class="menu-li">
                 <div class="menu-li-txt">About us</div>
             </a>
-            <a href="#services" class="menu-li"><div class="menu-li-txt">Our Services</div></a>
+            <a href="index.html#services" class="menu-li"><div class="menu-li-txt">Our Services</div></a>
             <a href="projects.html" class="menu-li"><div class="menu-li-txt">Our Works</div></a>
-            <a href="#bookings" class="menu-li"><div class="menu-li-txt">Book a Call</div></a>
+            <a href="index.html#contact" class="menu-li"><div class="menu-li-txt">Book a Call</div></a>
         </div>
     `;
 
@@ -30,7 +30,7 @@ function createHtml(){
             <a href="team.html" class="header-link">Our team</a>
             <a href="index.html#services" class="header-link">Services</a>
             <a href="projects.html" class="header-link">Projects</a>
-            <a href="index.html#bookings" class="header-link">Contact</a>
+            <a href="index.html#contact" class="header-link">Contact</a>
         </div>
 
         <a href="#bookings" class="btn-header">Start Project</a>
@@ -56,7 +56,7 @@ function createHtml(){
                 <a href="#about" class="foot-link">About us</a>
                 <a href="#services" class="foot-link">Our Services</a>
                 <a href="#works" class="foot-link">Our Works</a>
-                <a href="#bookings" class="foot-link">Bookings</a>
+                <a href="#contact" class="foot-link">Contact</a>
             </div>
             <div class="foot-col">
                 <div class="foot-label">Our Services</div>
@@ -307,6 +307,28 @@ function closeServiceModal(){
                     target.style.filter = "blur(10px)";
             }, 150);
         });
+    });
+}
+
+if(document.querySelector(".contact-form")){
+    document.querySelector(".contact-form").addEventListener("submit", function(e) {
+      e.preventDefault();
+      const form = e.target;
+      const data = new FormData(form);
+      fetch(form.action, {
+        method: form.method,
+        body: data,
+        headers: { 'Accept': 'application/json' }
+      }).then(response => {
+        if (response.ok) {
+            console.log("OKAY")
+          form.reset();
+          document.querySelector(".book-msg-modal").style.opacity = "1";
+          document.querySelector(".book-msg-modal").style.pointerEvents = "auto";
+        } else {
+          console.error("NOT OKAY");
+        }
+      });
     });
 }
 

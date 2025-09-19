@@ -398,6 +398,41 @@
         </div>
     </div>
 
+    <div class="contact-container width" id="contact">
+        <div class="contact-content scroll-target">
+            <div class="eyebrow book-eyebrow pop-target"><span></span> Contact</div>
+            <div class="contact-title">Get in Touch</div>
+            <div class="contact-para">Have questions? We're happy to help with bookings, services, or custom requests—just drop us a message.</div>
+            <div class="contact-box">
+                <div class="contact-head">Book a Call</div>
+                <div class="contact-txt">Choose a time that suits you and we’ll take care of the rest, no hassle, no wait.</div>
+                <a href="#bookings" class="btn-contact">Book Now</a>
+            </div>
+        </div>
+
+        <form action="https://api.web3forms.com/submit" method="POST" class="contact-form scroll-target">
+            <input type="hidden" name="access_key" value="ff02363a-d891-4f3b-8ca3-96c0fbf9c4ed" />
+            <div class="con-label">Your name</div>
+            <input type="text" class="con-input" placeholder="Enter your name" />
+
+            <div class="con-label">Email address</div>
+            <input type="text" class="con-input" placeholder="Enter your email" />
+
+            <div class="con-label">Phone number</div>
+            <input type="text" class="con-input" placeholder="Enter your number" />
+
+            <div class="con-label">Message</div>
+            <textarea class="con-area" placeholder="Type your message"></textarea>
+
+            <div class="robot-flex">
+                <div class="robot-box"><i class="fa-solid fa-check robot-check"></i></div>
+                <div class="robot-txt">I'm not a robot</div>
+            </div>
+
+            <div class="btn-contact">Send message <i class="fa-solid fa-chevron-right contact-chevron"></i></div>
+        </form>
+    </div>
+
     <div class="book-container width" id="bookings">
         <div class="book-content">
             <div class="eyebrow book-eyebrow pop-target"><span></span> Booking</div>
@@ -531,6 +566,15 @@
             <i class="fa-solid fa-check book-modal-check"></i>
             <div class="book-modal-title">Thank You!</div>
             <div class="book-modal-para">Your booking has been successfully<br> created. Thanks!</div>
+            <a href="index.html" class="btn-book-modal">Okay</a>
+        </div>
+    </div>
+
+    <div class="book-msg-modal">
+        <div class="book-wrapper">
+            <i class="fa-solid fa-check book-modal-check"></i>
+            <div class="book-modal-title">Thank You!</div>
+            <div class="book-modal-para">Your message has been successfully<br> delivered. Thanks!</div>
             <a href="index.html" class="btn-book-modal">Okay</a>
         </div>
     </div>
