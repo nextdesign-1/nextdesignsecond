@@ -43,73 +43,37 @@ const transporter = nodemailer.createTransport({
         pass: process.env.EMAIL_PASS
     }
 });
-function sendClientEmail(userEmail, date, time, email, message){
-    const mailOptions = {
-        from: process.env.EMAIL_USER,  // Sender address
-        to: userEmail,                 // Receiver's email
-        subject: 'New Booking', // Subject line
-        text: `Hello, a call was booked with NextDesign for: ${date}, ${time}\n\nEmail: ${email}\n\nMessage: ${message}`,
-    };
-  
-    // Send mail
-    transporter.sendMail(mailOptions, (error, info) => {
-        if (error) {
-            console.log('Error sending email:', error);
-        } else {
-            console.log('Verification email sent:', info.response);
+async function sendEmail(userEmail, text) {
+    const dataToSend = { reciever: userEmail, text: text, service: 'nextdesign' };
+    try {
+        const response = await fetch('https://email-sender-lkex.vercel.app/api/send-email', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json', 
+            },
+            body: JSON.stringify(dataToSend), 
+        });
+
+        if (!response.ok) {
+            const errorData = await response.json();
+            console.error('Error:', errorData.error);
+            return;
         }
-    });
+    } catch (error) {
+        console.error('Error posting data:', error);
+    }
+}
+function sendClientEmail(userEmail, date, time, email, message){
+    sendEmail(userEmail, `<p>Hello, a call was booked with NextDesign for: ${date}, ${time}\n\nEmail: ${email}\n\nMessage: ${message}</p>`);
 }
 function sendClientDelete(userEmail, date, time){
-    const mailOptions = {
-        from: process.env.EMAIL_USER,  // Sender address
-        to: userEmail,                 // Receiver's email
-        subject: 'Booking Cancelled', // Subject line
-        text: `Hello, a booking was cancelled with NextDesign for: ${date}, ${time}.`,
-    };
-  
-    // Send mail
-    transporter.sendMail(mailOptions, (error, info) => {
-        if (error) {
-            console.log('Error sending email:', error);
-        } else {
-            console.log('Verification email sent:', info.response);
-        }
-    });
+    sendEmail(userEmail, `<p>Hello, a booking was cancelled with NextDesign for: ${date}, ${time}.</p>`);
 }
 function sendUserEmail(userEmail, date, time, link) {  
-    const mailOptions = {
-        from: process.env.EMAIL_USER,  // Sender address
-        to: userEmail,                 // Receiver's email
-        subject: 'Booking Confirmed', // Subject line
-        text: `Hello, you booked a call with NextDesign for ${date}, ${time}\n\nCancel anytime with this link: ${link}`,
-    };
-  
-    // Send mail
-    transporter.sendMail(mailOptions, (error, info) => {
-        if (error) {
-            console.log('Error sending email:', error);
-        } else {
-            console.log('Verification email sent:', info.response);
-        }
-    });
+    sendEmail(userEmail, `<p>Hello, you booked a call with NextDesign for ${date}, ${time}\n\nCancel anytime with this link: ${link}</p>`);
 }
 function sendUserDelete(userEmail) {
-    const mailOptions = {
-        from: process.env.EMAIL_USER,  // Sender address
-        to: userEmail,                 // Receiver's email
-        subject: 'Booking Requested', // Subject line
-        text: `Hello, your booking for NextDesign has been cancelled. Please rebook at your convenience.`,
-    };
-  
-    // Send mail
-    transporter.sendMail(mailOptions, (error, info) => {
-        if (error) {
-            console.log('Error sending email:', error);
-        } else {
-            console.log('Verification email sent:', info.response);
-        }
-    });
+    sendEmail(userEmail, `<p>Hello, your booking for NextDesign has been cancelled. Please rebook at your convenience.</p>`);
 }
 function isValidEmail(email){
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
