@@ -33,7 +33,7 @@ function createHtml(){
             <a href="index.html#contact" class="header-link">Contact</a>
         </div>
 
-        <a href="#bookings" class="btn-header">Start Project</a>
+        <a href="index.html#bookings" class="btn-header">Start Project</a>
         <div class="header-burger" onclick="openMenu()">
             <div class="burger-line line1"></div>
             <div class="burger-line line2"></div>
