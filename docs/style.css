@@ -459,6 +459,14 @@ background-repeat: repeat-x;
     color: hsl(0, 0%, 85%);
     width: 250px;
 }
+.video-container {
+    margin: 60px auto 0;
+}
+.hero-video {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+}
 /* ============================== */
 
 /* ===== ABOUT US Section ===== */
@@ -2624,6 +2632,9 @@ span.lac-mon-active {
         width: auto;
     }
 
+    .about-container {
+        margin-top: 90px;
+    }
     .about-title {
         font-size: 36px;
     }
@@ -2764,7 +2775,6 @@ span.lac-mon-active {
     #closedMsg {
         top: 0px;
     }
-
 }
 
 @media (hover: hover) and (pointer: fine) {
