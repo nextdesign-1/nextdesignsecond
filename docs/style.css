@@ -991,6 +991,176 @@ i.smodal-check {
 }
 /* =============================== */
 
+/* ===== OUR REVIEWS Section ===== */
+.test-container {
+    margin: 0 auto 0;
+    display: flex;
+    flex-direction: column;
+}
+.test-title {
+    margin-top: 16px;
+    text-align: center;
+    font-size: 64px;
+    font-weight: 600;
+    color: white;
+}
+.test-para {
+    text-align: center;
+    margin: 18px auto 24px;
+    width: 550px;
+    font-size: 18px;
+    color: hsl(0, 0%, 85%);
+    line-height: 1.6;
+}
+.btn-test {
+    border-radius: 8px;
+    align-self: center;
+    cursor: pointer;
+    background: linear-gradient(90deg,
+        #0f36ac,   /* Royal Blue */
+        #8A2BE2,   /* Blue Violet */
+        #ff0000    /* Pink-Red */
+    );
+    background-size: cover;
+    color: white;
+    padding: 10px 22px;
+    font-size: 17px;
+    font-weight: 500;
+    transition: 0.2s ease;
+}
+.test-flex {
+    margin-top: 50px;
+    width: 100%;
+    display: flex;
+    gap: 30px;
+}
+.test-col-col {
+    width: 100%;
+}
+.test-col {
+    overflow: hidden;
+    mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 1%, rgb(0, 0, 0) 35%, rgb(0, 0, 0) 65%, rgba(0, 0, 0, 0) 99%);
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+.tc1, .tc3 {
+    height: 800px;
+    justify-content: flex-end;
+}
+.tc2 {
+    height: 660px;
+    justify-content: flex-start;
+}
+.test-wrapper {
+    display: flex;
+    flex-direction: column;
+    min-height: 250px;
+    background-color: hsl(0, 0%, 9%);
+    border: 1px solid hsl(0, 0%, 15%);
+    border-radius: 8px;
+    padding: 24px 20px;
+    width: 100%;
+}
+.ww1 {
+    animation: testSlide1 24s linear infinite;
+}
+.ww2 {
+    animation: testSlide2 24s linear infinite;
+}
+.ww3 {
+    animation: testSlide3 24s linear infinite;
+}
+@keyframes testSlide1 {
+    0% {
+        transform: translateY(0px);
+    }
+    100% {
+        transform: translateY(827px);
+    }
+}
+@keyframes testSlide2 {
+    0% {
+        transform: translateY(0px);
+    }
+    100% {
+        transform: translateY(-825px);
+    }
+}
+@keyframes testSlide3 {
+    0% {
+        transform: translateY(0px);
+    }
+    100% {
+        transform: translateY(827px);
+    }
+}
+.test-star-flex {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+.test-star {
+    width: 14px;
+    height: auto;
+}
+.test-txt {
+    margin: 15px 0 24px;
+    font-size: 15px;
+    line-height: 1.6;
+    color: hsl(0, 0%, 75%);
+}
+.test-info {
+    margin-top: auto;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+.test-avatar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 42px;
+    height: 42px;
+    border-radius: 200px;
+    background-color: #155d9c;
+    color: white;
+    font-size: 18px;
+}
+.test-name {
+    line-height: 1;
+    font-size: 15px;
+    color: white;
+}
+.test-date {
+    margin-top: 8px;
+    line-height: 1;
+    color: hsl(0, 0%, 60%);
+    font-size: 14px;
+}
+.test-google {
+    margin-top: 20px;
+    border-radius: 8px;
+    width: 100%;
+    height: 150px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: hsl(0, 0%, 9%);
+    border: 1px solid hsl(0, 0%, 15%);
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+.test-google:hover {
+    border: 1px solid hsl(0, 0%, 25%);
+}
+.test-google img {
+    height: 95px;
+    width: auto;
+}
+/* =============================== */
+
 /* ===== OUR TEAM PAGE ===== */
 .meet-container {
     width: 1300px;
@@ -2319,6 +2489,21 @@ span.lac-mon-active {
     .form-wrapper {
         width: 420px;
     }
+
+    .test-col-col {
+        display: none;
+    }
+    .tc1 {
+        justify-content: flex-start;
+    }
+    @keyframes testSlide1 {
+        0% {
+            transform: translateY(0px);
+        }
+        100% {
+            transform: translateY(-827px);
+        }
+    }
 }
 @media only screen and (max-width: 1300px){
     .about-container {
@@ -2591,6 +2776,11 @@ span.lac-mon-active {
         width: 544px;
     }
 }
+@media only screen and (max-width: 840px){
+    .tc3 {
+        display: none;
+    }
+}
 @media only screen and (max-width: 700px){
     .about-container {
         margin: 120px auto 90px;
@@ -2774,6 +2964,20 @@ span.lac-mon-active {
 
     #closedMsg {
         top: 0px;
+    }
+
+    .test-container {
+        margin-bottom: 0px;
+    }
+    .test-title {
+        font-size: 36px;
+    }
+    .test-para {
+        font-size: 15px;
+        max-width: 100%;
+    }
+    .test-flex {
+        margin-top: 30px;
     }
 }
 
