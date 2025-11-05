@@ -13,7 +13,7 @@ function createHtml(){
             <a href="team.html" class="menu-li">
                 <div class="menu-li-txt">About us</div>
             </a>
-            <a href="index.html#services" class="menu-li"><div class="menu-li-txt">Our Services</div></a>
+            <a href="services.html" class="menu-li"><div class="menu-li-txt">Our Services</div></a>
             <a href="projects.html" class="menu-li"><div class="menu-li-txt">Our Works</div></a>
             <a href="index.html#contact" class="menu-li"><div class="menu-li-txt">Book a Call</div></a>
         </div>
@@ -28,7 +28,7 @@ function createHtml(){
         <div class="header-nav">
             <a href="index.html" class="header-link">Home</a>
             <a href="team.html" class="header-link">Our team</a>
-            <a href="index.html#services" class="header-link">Services</a>
+            <a href="services.html" class="header-link">Services</a>
             <a href="projects.html" class="header-link">Projects</a>
             <a href="index.html#contact" class="header-link">Contact</a>
         </div>
@@ -54,17 +54,17 @@ function createHtml(){
                 <div class="foot-label">Useful Links</div>
                 <a href="index.html" class="foot-link">Home</a>
                 <a href="#about" class="foot-link">About us</a>
-                <a href="#services" class="foot-link">Our Services</a>
+                <a href="services.html" class="foot-link">Our Services</a>
                 <a href="#works" class="foot-link">Our Works</a>
                 <a href="#contact" class="foot-link">Contact</a>
             </div>
             <div class="foot-col">
                 <div class="foot-label">Our Services</div>
-                <a href="#services" class="foot-link">Design & Development</a>
-                <a href="#services" class="foot-link">Backend Systems</a>
-                <a href="#services" class="foot-link">SEO Optimization</a>
-                <a href="#services" class="foot-link">Site Maintenance</a>
-                <a href="#services" class="foot-link">Social Media Managment</a>
+                <a href="services.html" class="foot-link">Design & Development</a>
+                <a href="services.html" class="foot-link">Backend Systems</a>
+                <a href="services.html" class="foot-link">SEO Optimization</a>
+                <a href="services.html" class="foot-link">Site Maintenance</a>
+                <a href="services.html" class="foot-link">Social Media Managment</a>
             </div>
         </div>
         <div class="foot-hr"></div>
@@ -330,6 +330,22 @@ if(document.querySelector(".contact-form")){
         }
       });
     });
+}
+
+function changeCase(){
+    let active = document.querySelector(".case-bento-active");
+    let inactive = document.querySelector(".case-bento-inactive");
+
+    active.classList.remove("case-bento-active");
+    active.classList.add("case-bento-inactive");
+    setTimeout(() => {
+        active.style.display = "none";
+        inactive.style.display = "block";
+        setTimeout(() => {
+            inactive.classList.remove("case-bento-inactive");
+            inactive.classList.add("case-bento-active");
+        }, 50);
+    }, 500);
 }
 
 

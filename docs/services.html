@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <link rel="stylesheet" href="style.css">
+    <link rel="shortcut icon" href="images/logo-transparent.png" type="image/x-icon">
+    <script src="https://kit.fontawesome.com/515deb5b82.js" crossorigin="anonymous"></script>
+    <title>NextDesign | Our Projects</title>
+</head>
+<body>
+    <div class="servp-space" style="height: 90px;"></div>
+    <div class="services-container width" id="services">
+        <div class="eyebrow services-eyebrow pop-target"><span></span> Our Services</div>
+        <div class="services-title pop-target">What We Offer</div>
+        <div class="services-para pop-target">Discover our tailored website solutions designed to drive efficiency, innovation, and growth.</div>
+        <div class="services-flex">
+            <div class="services-wrapper">
+                <div class="services-blur"></div>
+                <div class="services-content">
+                    <i class="fa-solid fa-palette services-icon"></i>
+                    <div class="services-head">Design & Development</div>
+                    <div class="services-txt">We design modern, user-focused websites that look great, perform well, and match your brand, engaging visitors effectively and driving meaningful business results every time.</div>
+                    <div onclick="showServiceModal(0)" class="services-cta">Learn more <img src="images/arrow.png" class="services-arrow" /></div>
+                </div>
+            </div>
+            <div class="services-wrapper">
+                <div class="services-blur"></div>
+                <div class="services-content">
+                    <i class="fa-solid fa-wrench services-icon"></i>
+                    <div class="services-head">Website Maintenance</div>
+                    <div class="services-txt">We keep your website running smoothly with updates, fixes, and performance checks, ensuring it stays secure, loads quickly, and delivers an excellent experience for every visitor who visits.</div>
+                    <div onclick="showServiceModal(1)" class="services-cta">Learn more <img src="images/arrow.png" class="services-arrow" /></div>
+                </div>
+            </div>
+            <div class="services-wrapper">
+                <div class="services-blur"></div>
+                <div class="services-content">
+                    <i class="fa-solid fa-magnifying-glass services-icon"></i>
+                    <div class="services-head">SEO Optimization</div>
+                    <div class="services-txt">We optimise your website so it appears higher in Google searches, helping customers find you faster and driving more organic traffic to your online presence.</div>
+                    <div onclick="showServiceModal(2)" class="services-cta">Learn more <img src="images/arrow.png" class="services-arrow" /></div>
+                </div>
+            </div>
+        </div>
+        <div class="services-flex">
+            <div class="services-wrapper">
+                <div class="services-blur"></div>
+                <div class="services-content">
+                    <i class="fa-solid fa-chart-line services-icon"></i>
+                    <div class="services-head">Online Business Consultations</div>
+                    <div class="services-txt">We provide expert online business consultations, guiding strategy, growth, and digital presence. Our tailored advice ensures your business thrives with clarity, focus, and measurable results.</div>
+                    <div onclick="showServiceModal(3)" class="services-cta">Learn more <img src="images/arrow.png" class="services-arrow" /></div>
+                </div>
+            </div>
+            <div class="services-wrapper">
+                <div class="services-blur"></div>
+                <div class="services-content">
+                    <i class="fa-solid fa-puzzle-piece services-icon"></i>
+                    <div class="services-head">Branding Design</div>
+                    <div class="services-txt">We create branding designs that capture your unique identity. Through thoughtful visuals and strategy, we help businesses communicate, build recognition, and foster lasting customer trust.</div>
+                    <div onclick="showServiceModal(4)" class="services-cta">Learn more <img src="images/arrow.png" class="services-arrow" /></div>
+                </div>
+            </div>
+            <div class="services-wrapper">
+                <div class="services-blur"></div>
+                <div class="services-content">
+                    <i class="fa-solid fa-video services-icon"></i>
+                    <div class="services-head">Video Editing</div>
+                    <div class="services-txt">Our video editing service delivers captivating, high-quality content that tells your story with impact. From raw footage to final cut, we craft videos that engage audiences and elevate your brand.</div>
+                    <div onclick="showServiceModal(5)" class="services-cta">Learn more <img src="images/arrow.png" class="services-arrow" /></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="smodal-modal">
+            <div class="smodal-wrapper">
+                <div class="smodal-blur"></div>
+                <i class="fa-solid fa-xmark smodal-x" onclick="closeServiceModal()"></i>
+                <div class="smodal-content">
+                    <i class="fa-solid fa-palette smodal-icon smodal-target1"></i>
+                    <div class="smodal-head smodal-target1">Design & Development</div>
+                    <div class="smodal-txt smodal-target1">We create modern, user-focused websites that look great, perform flawlessly, and reflect your brand identity. Our designs engage visitors, drive results, and deliver smooth, intuitive experiences across all devices, optimized for speed, accessibility, and long-term growth.</div>
+                    <div class="eyebrow smodal-eyebrow smodal-target2">Key Feautres</div>
+                    <div class="smodal-col">
+                        <div class="smodal-point smodal-target2"><i class="fa-solid fa-check smodal-check"></i> Modern, responsive layouts</div>
+                        <div class="smodal-point smodal-target2"><i class="fa-solid fa-check smodal-check"></i> Optimized for speed and conversions</div>
+                        <div class="smodal-point smodal-target2"><i class="fa-solid fa-check smodal-check"></i> SEO-friednly structure</div>
+                    </div>
+                    <a href="#bookings" onclick="closeServiceModal()" class="btn-smodal smodal-target3">Request a Quote <img src="images/arrow.png" class="about-arrow" /></a>
+                </div>
+            </div>
+        </div>
+        <div class="smodal-modal">
+            <div class="smodal-wrapper">
+                <div class="smodal-blur"></div>
+                <i class="fa-solid fa-xmark smodal-x" onclick="closeServiceModal()"></i>
+                <div class="smodal-content">
+                    <i class="fa-solid fa-wrench smodal-icon smodal-target1"></i>
+                    <div class="smodal-head smodal-target1">Website Maintenance</div>
+                    <div class="smodal-txt smodal-target1">We provide proactive website maintenance that keeps your site secure, updated, and performing smoothly. Our team monitors functionality, applies updates, fixes issues, and optimizes overall site health, ensuring maximum uptime and seamless experiences across all devices.</div>
+                    <div class="eyebrow smodal-eyebrow smodal-target2">Key Feautres</div>
+                    <div class="smodal-col">
+                        <div class="smodal-point smodal-target2"><i class="fa-solid fa-check smodal-check"></i> Continuous performance monitoring</div>
+                        <div class="smodal-point smodal-target2"><i class="fa-solid fa-check smodal-check"></i> Security updates and backups</div>
+                        <div class="smodal-point smodal-target2"><i class="fa-solid fa-check smodal-check"></i> Error detection and prompt fixes</div>
+                    </div>
+                    <a href="#bookings" onclick="closeServiceModal()" class="btn-smodal smodal-target3">Request a Quote <img src="images/arrow.png" class="about-arrow" /></a>
+                </div>
+            </div>
+        </div>
+        <div class="smodal-modal">
+            <div class="smodal-wrapper">
+                <div class="smodal-blur"></div>
+                <i class="fa-solid fa-xmark smodal-x" onclick="closeServiceModal()"></i>
+                <div class="smodal-content">
+                    <i class="fa-solid fa-magnifying-glass smodal-icon smodal-target1"></i>
+                    <div class="smodal-head smodal-target1">SEO Optimization</div>
+                    <div class="smodal-txt smodal-target1">Our SEO services boost online visibility, drive targeted traffic, and improve search rankings. We optimize keywords, content, and technical SEO to create a fast, user-friendly site that increases organic growth, conversions, and aligns with your brand goals.</div>
+                    <div class="eyebrow smodal-eyebrow smodal-target2">Key Feautres</div>
+                    <div class="smodal-col">
+                        <div class="smodal-point smodal-target2"><i class="fa-solid fa-check smodal-check"></i> Strategic keyword and content optimization</div>
+                        <div class="smodal-point smodal-target2"><i class="fa-solid fa-check smodal-check"></i> Backlinks & data analytics</div>
+                        <div class="smodal-point smodal-target2"><i class="fa-solid fa-check smodal-check"></i> Technical SEO improvements</div>
+                    </div>
+                    <a href="#bookings" onclick="closeServiceModal()" class="btn-smodal smodal-target3">Request a Quote <img src="images/arrow.png" class="about-arrow" /></a>
+                </div>
+            </div>
+        </div>
+        <div class="smodal-modal">
+            <div class="smodal-wrapper">
+                <div class="smodal-blur"></div>
+                <i class="fa-solid fa-xmark smodal-x" onclick="closeServiceModal()"></i>
+                <div class="smodal-content">
+                    <i class="fa-solid fa-chart-line smodal-icon smodal-target1"></i>
+                    <div class="smodal-head smodal-target1">Online Business Consultations</div>
+                    <div class="smodal-txt smodal-target1">We provide tailored online business consultations to optimize strategy, operations, and growth opportunities. Through expert analysis and actionable recommendations, we help businesses improve efficiency, customer experience, and digital presence, creating measurable impact and clear direction.</div>
+                    <div class="eyebrow smodal-eyebrow smodal-target2">Key Feautres</div>
+                    <div class="smodal-col">
+                        <div class="smodal-point smodal-target2"><i class="fa-solid fa-check smodal-check"></i> Personalized growth strategies</div>
+                        <div class="smodal-point smodal-target2"><i class="fa-solid fa-check smodal-check"></i> Operational and digital workflow optimization</div>
+                        <div class="smodal-point smodal-target2"><i class="fa-solid fa-check smodal-check"></i> Data-driven actionable insights</div>
+                    </div>
+                    <a href="#bookings" onclick="closeServiceModal()" class="btn-smodal smodal-target3">Request a Quote <img src="images/arrow.png" class="about-arrow" /></a>
+                </div>
+            </div>
+        </div>
+        <div class="smodal-modal">
+            <div class="smodal-wrapper">
+                <div class="smodal-blur"></div>
+                <i class="fa-solid fa-xmark smodal-x" onclick="closeServiceModal()"></i>
+                <div class="smodal-content">
+                    <i class="fa-solid fa-puzzle-piece smodal-icon smodal-target1"></i>
+                    <div class="smodal-head smodal-target1">Branding Design</div>
+                    <div class="smodal-txt smodal-target1">We create compelling brand identities that communicate your mission, values, and vision across all platforms. From logos to typography and messaging, we ensure consistency, appeal, and resonance, helping your brand stand out and inspire loyalty.</div>
+                    <div class="eyebrow smodal-eyebrow smodal-target2">Key Feautres</div>
+                    <div class="smodal-col">
+                        <div class="smodal-point smodal-target2"><i class="fa-solid fa-check smodal-check"></i> Cohesive and memorable visual identity</div>
+                        <div class="smodal-point smodal-target2"><i class="fa-solid fa-check smodal-check"></i> Consistent cross-platform branding</div>
+                        <div class="smodal-point smodal-target2"><i class="fa-solid fa-check smodal-check"></i> Strategic messaging and design alignment</div>
+                    </div>
+                    <a href="#bookings" onclick="closeServiceModal()" class="btn-smodal smodal-target3">Request a Quote <img src="images/arrow.png" class="about-arrow" /></a>
+                </div>
+            </div>
+        </div>
+        <div class="smodal-modal">
+            <div class="smodal-wrapper">
+                <div class="smodal-blur"></div>
+                <i class="fa-solid fa-xmark smodal-x" onclick="closeServiceModal()"></i>
+                <div class="smodal-content">
+                    <i class="fa-solid fa-video smodal-icon smodal-target1"></i>
+                    <div class="smodal-head smodal-target1">Video Editing</div>
+                    <div class="smodal-txt smodal-target1">Our video editing service delivers captivating, high-quality content that tells your story with impact. From raw footage to final cut, we craft visually stunning and emotionally engaging videos that captivate audiences, elevate your brand, and bring your unique vision to life.</div>
+                    <div class="eyebrow smodal-eyebrow smodal-target2">Key Feautres</div>
+                    <div class="smodal-col">
+                        <div class="smodal-point smodal-target2"><i class="fa-solid fa-check smodal-check"></i> Professional, cinematic video quality</div>
+                        <div class="smodal-point smodal-target2"><i class="fa-solid fa-check smodal-check"></i> Fast turnaround and delivery</div>
+                        <div class="smodal-point smodal-target2"><i class="fa-solid fa-check smodal-check"></i> Engaging storytelling and pacing</div>
+                    </div>
+                    <a href="https://elevarecreatives.com/#contact" target="_blank" onclick="closeServiceModal()" class="btn-smodal smodal-target3">Request a Quote <img src="images/arrow.png" class="about-arrow" /></a>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 
+            <div class="btn-services">See Works <img src="images/arrow.png" class="about-arrow" /></div>
+            -->
+    </div>
+
+    <div class="container-bg" id="case">
+        <div class="hero-stripe case-stripe1"></div>
+        <div class="case-container width">
+            <div class="case-content">
+                <div class="eyebrow services-eyebrow pop-target"><span></span> Video Editing</div>
+                <div class="case-title pop-target">Results From Our<br> Video Editing</div>
+                <div class="case-para pop-target">By refining visuals and pacing, we grew viewership dramatically and delivered meaningful results for business growth.</div>
+                <div class="case-nav pop-target">
+                    <i class="fa-solid fa-chevron-left case-chev" onclick="changeCase()"></i>
+                    <i class="fa-solid fa-chevron-right case-chev" onclick="changeCase()"></i>
+                </div>
+            </div>
+            <div class="case-bento case-bento-inactive" style="display: none;">
+                <div class="case-flex">
+                    <div class="exp-img-container">
+                        <img src="https://elevarecreatives.com/images/case-rick1.jpg" class="exp-img" />
+                    </div>
+                    <div class="case-desc-wrapper all-about">
+                        <div class="about-blur"></div>
+                        <div class="case-desc">Before working with us, this company's videos <span>barely reached 1.4K followers.</span> Weak visuals and rough editing made it hard to keep viewers engaged.<br><br>After partnering with us, everything changed. Better pacing and visuals kept viewers hooked, which boosted their videos to millions of views.</div>
+                    </div>
+                </div>
+                <div class="case-flex">
+                    <div class="case-desc-wrapper all-about">
+                        <div class="about-blur"></div>
+                        <div class="case-desc">A video we optimized for them <span>exceeded 1.7m views</span>, bringing in <span>over 50 thousand</span> new followers. This was a huge jump from their past results.<br><br>Our editing made the video more engaging, with better pacing and visuals. Higher retention led to a boost in views and engagement.</div>
+                    </div>
+                    <div class="exp-img-container" style="align-items: center;">
+                            <video autoplay muted loop playsinline class="work-video" style="margin-bottom: 150px;">
+                            <source src="https://elevarecreatives.com/images/case-rick-vid.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                            </video>
+                    </div>
+                </div>
+                <div class="case-flex">
+                    <div class="case-stat-wrapper all-about">
+                        <div class="about-blur"></div>
+                        <div class="case-stat-head">100k+</div>
+                        <div class="case-stat-txt">Generated Views</div>
+                    </div>
+                    <div class="case-stat-wrapper all-about">
+                        <div class="about-blur"></div>
+                        <div class="case-stat-head">150K+</div>
+                        <div class="case-stat-txt">Followers Gained</div>
+                    </div>
+                    <div class="case-stat-wrapper all-about">
+                        <div class="about-blur"></div>
+                        <div class="case-stat-head">50k+</div>
+                        <div class="case-stat-txt">Total Likes</div>
+                    </div>
+                </div>
+            </div>
+            <div class="case-bento case-bento-active">
+                <div class="case-flex scroll-target">
+                    <div class="exp-img-container">
+                        <img src="https://elevarecreatives.com/images/case-acc2.png" class="exp-img" />
+                    </div>
+                    <div class="case-desc-wrapper all-about">
+                        <div class="about-blur"></div>
+                        <div class="case-desc">Before working with us, RicksRetro's videos <span>struggled to reach beyond 2K views.</span> Their content lacked rhythm and storytelling — visually appealing, but not converting scrolls into followers.<br><br>After partnering with us, we refined everything: tighter pacing, cinematic visuals, and a stronger narrative. Within weeks, their reels began hitting hundreds of thousands of views.</div>
+                    </div>
+                </div>
+                <div class="case-flex scroll-target">
+                    <div class="case-desc-wrapper all-about">
+                        <div class="about-blur"></div>
+                        <div class="case-desc">We created a video for them which <span>exceeded 100k views</span>, bringing in <span>over 50</span> new sales. This was a huge jump from their past results.<br><br>Our editing made the video more engaging, with better pacing and visuals. Higher retention led to a boost in views and engagement.</div>
+                    </div>
+                    <div class="exp-img-container" style="align-items: center;">
+                            <video autoplay muted loop playsinline class="work-video" style="margin-bottom: 150px;">
+                            <source src="https://elevarecreatives.com/images/case-vid.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                            </video>
+                    </div>
+                </div>
+                <div class="case-flex scroll-target">
+                    <div class="case-stat-wrapper all-about">
+                        <div class="about-blur"></div>
+                        <div class="case-stat-head">3m+</div>
+                        <div class="case-stat-txt">Generated Views</div>
+                    </div>
+                    <div class="case-stat-wrapper all-about">
+                        <div class="about-blur"></div>
+                        <div class="case-stat-head">60K+</div>
+                        <div class="case-stat-txt">Followers Gained</div>
+                    </div>
+                    <div class="case-stat-wrapper all-about">
+                        <div class="about-blur"></div>
+                        <div class="case-stat-head">550k+</div>
+                        <div class="case-stat-txt">Total Likes</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="plan-container width">
+        <div class="eyebrow services-eyebrow pop-target"><span></span> Video Pricing</div>
+        <div class="plan-title pop-target">Plans and Pricing</div>
+        <div class="plan-para pop-target">Choose a plan that suits your business. We offer simple, affordable pricing — or <span class="plan-para">request a custom package tailored to you.</span></div>
+
+        <div class="plan-flex">
+            <div class="plan-wrapper scroll-target">
+                <div class="plan-head">Short Form</div>
+                <div class="plan-price">£450 - 500</div>
+                <div class="plan-desc">Ideal for creators and brands who need quick, engaging content.</div>
+                <a href="index.html#contact">
+                    <div class="btn-plan">Get Started Now</div>
+                </a>
+                <div class="plan-label">PLAN FEATURES</div>
+                <div class="plan-feat">
+                    <div class="feat-flex">
+                        <div class="feat-tick"><i class="fa-solid fa-check tick-icon"></i></div>
+                        <div class="feat-txt">5 short-form videos (60s or less)</div>
+                    </div>
+                    <div class="feat-flex">
+                        <div class="feat-tick"><i class="fa-solid fa-check tick-icon"></i></div>
+                        <div class="feat-txt">Dynamic pacing</div>
+                    </div>
+                    <div class="feat-flex">
+                        <div class="feat-tick"><i class="fa-solid fa-check tick-icon"></i></div>
+                        <div class="feat-txt">Captions, effects, motion text</div>
+                    </div>
+                    <div class="feat-flex">
+                        <div class="feat-tick"><i class="fa-solid fa-check tick-icon"></i></div>
+                        <div class="feat-txt">Social-platform optimized</div>
+                    </div>
+                    <div class="feat-flex">
+                        <div class="feat-tick"><i class="fa-solid fa-check tick-icon"></i></div>
+                        <div class="feat-txt">Delivered weekly or all at once</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="plan-wrapper scroll-target">
+                <div class="plan-head">Promo Video</div>
+                <div class="plan-price">£750 - 1k</div>
+                <div class="plan-desc">Designed for launches, conversions, and high-impact marketing.</div>
+                <a href="index.html#contact">
+                    <div class="btn-plan">Get Started Now</div>
+                </a>
+                <div class="plan-label">PLAN FEATURES</div>
+                <div class="plan-feat">
+
+                    <div class="feat-flex">
+                        <div class="feat-tick"><i class="fa-solid fa-check tick-icon"></i></div>
+                        <div class="feat-txt">1 promotional video</div>
+                    </div>
+
+                    <div class="feat-flex">
+                        <div class="feat-tick"><i class="fa-solid fa-check tick-icon"></i></div>
+                        <div class="feat-txt">Strong pacing + visuals</div>
+                    </div>
+
+                    <div class="feat-flex">
+                        <div class="feat-tick"><i class="fa-solid fa-check tick-icon"></i></div>
+                        <div class="feat-txt">Script guidance</div>
+                    </div>
+
+                    <div class="feat-flex">
+                        <div class="feat-tick"><i class="fa-solid fa-check tick-icon"></i></div>
+                        <div class="feat-txt">Delivery options</div>
+                    </div>
+
+                    <div class="feat-flex">
+                        <div class="feat-tick"><i class="fa-solid fa-check tick-icon"></i></div>
+                        <div class="feat-txt">Conversion-focused</div>
+                    </div>
+
+                </div>
+            </div>
+            
+            <!-- 
+                <div class="plan-most">Most Popular!</div>
+             -->
+            
+            <div class="plan-wrapper mid-plan scroll-target">
+                <div class="plan-head">Standard Package</div>
+                <div class="plan-price">£900 - 1.1k</div>
+                <div class="plan-desc">Great for longer storytelling and promotional pieces.</div>
+                <a href="index.html#contact">
+                    <div class="btn-plan" style="background-color: hsl(0, 0%, 15%);">Get Started Now</div>
+                </a>
+                <div class="plan-label">PLAN FEATURES</div>
+                <div class="plan-feat">
+
+                    <div class="feat-flex">
+                        <div class="feat-tick"><i class="fa-solid fa-check tick-icon"></i></div>
+                        <div class="feat-txt">5 videos (1–2.5 minutes each)</div>
+                    </div>
+
+                    <div class="feat-flex">
+                        <div class="feat-tick"><i class="fa-solid fa-check tick-icon"></i></div>
+                        <div class="feat-txt">Clean narrative + structured pacing</div>
+                    </div>
+
+                    <div class="feat-flex">
+                        <div class="feat-tick"><i class="fa-solid fa-check tick-icon"></i></div>
+                        <div class="feat-txt">Branding, titles, and sound design</div>
+                    </div>
+
+                    <div class="feat-flex">
+                        <div class="feat-tick"><i class="fa-solid fa-check tick-icon"></i></div>
+                        <div class="feat-txt">Multiple revision rounds</div>
+                    </div>
+
+                    <div class="feat-flex">
+                        <div class="feat-tick"><i class="fa-solid fa-check tick-icon"></i></div>
+                        <div class="feat-txt">Exported for all major platforms</div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="plan-wrapper end-plan scroll-target">
+                <div class="plan-head">Monthly Content</div>
+                <div class="plan-price">£1.2k - 1.5k</div>
+                <div class="plan-desc">Best for brands needing consistent, reliable content.</div>
+                <a href="index.html#contact">
+                    <div class="btn-plan" style="background-color: hsl(0, 0%, 15%);">Get Started Now</div>
+                </a>
+                <div class="plan-label">PLAN FEATURES</div>
+                <div class="plan-feat">
+
+                    <div class="feat-flex">
+                        <div class="feat-tick"><i class="fa-solid fa-check tick-icon"></i></div>
+                        <div class="feat-txt">10+ videos per month</div>
+                    </div>
+
+                    <div class="feat-flex">
+                        <div class="feat-tick"><i class="fa-solid fa-check tick-icon"></i></div>
+                        <div class="feat-txt">Dedicated editor</div>
+                    </div>
+
+                    <div class="feat-flex">
+                        <div class="feat-tick"><i class="fa-solid fa-check tick-icon"></i></div>
+                        <div class="feat-txt">Branding & style</div>
+                    </div>
+
+                    <div class="feat-flex">
+                        <div class="feat-tick"><i class="fa-solid fa-check tick-icon"></i></div>
+                        <div class="feat-txt">Messaging anytime</div>
+                    </div>
+
+                    <div class="feat-flex">
+                        <div class="feat-tick"><i class="fa-solid fa-check tick-icon"></i></div>
+                        <div class="feat-txt">Content planning</div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="plan-cust scroll-target">
+            <div class="cust-col">
+                <div class="cust-head">Need a Tailored Solution?</div>
+                <div class="cust-para">Our pricing isn’t set in stone. Reach out for a bespoke package designed to suit your business.</div>
+            </div>
+
+            <div class="cust-nav">
+                <a href="index.html#contact">
+                    <div class="btn-cust btn-inq">Send inquiry</div>
+                </a>
+                <a href="index.html#bookings">
+                    <div class="btn-cust btn-stra">Book a call</div>
+                </a>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="script.js"></script>
+</body>
+</html>
