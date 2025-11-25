@@ -90,13 +90,19 @@ function closeMenu(){
 }
 
 function startAnimation(){
+    let prevChar = "";
+    let currChar = "";
     document.querySelector(".hero-para").innerHTML = document.querySelector(".hero-para").textContent
     .split('')
     .map(char => {
+        currChar = char;
+        if(currChar == "b" && prevChar == "e" && window.innerWidth < 701) return `<span>${char}</span><br>`;
+        prevChar = char;
         if (char === ' ') return `<span>&nbsp;</span>`;
         return `<span>${char}</span>`;
     })
     .join('');
+    document.querySelector(".hero-para").innerHTML = document.querySelector(".hero-para").innerHTML.slice(0, )
     document.querySelector(".hero-para").style.opacity = "1";
 
     document.querySelector(".outline-block").style.transform = "translateX(1700px)";
