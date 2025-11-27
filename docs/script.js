@@ -354,6 +354,32 @@ function changeCase(){
     }, 500);
 }
 
+document.querySelectorAll(".off-txt-active").forEach(txt => {
+    txt.classList.remove("off-txt-active");
+});
+document.querySelectorAll("i.off-chev").forEach(chev => {
+    chev.style.transform = "rotate(0deg)";
+});
+document.querySelectorAll(".off-ul").forEach(ul => {
+    ul.querySelectorAll(".off-li").forEach(li => {
+        li.addEventListener("click", () => {
+            if(li.querySelector("i.off-chev").style.transform == "rotate(-180deg)"){
+                li.querySelector(".off-txt").classList.remove("off-txt-active");
+                li.querySelector("i.off-chev").style.transform = "rotate(0deg)";
+            } else {
+                ul.querySelectorAll(".off-li").forEach(li => {
+                    li.querySelector(".off-txt").classList.remove("off-txt-active");
+                    li.querySelector("i.off-chev").style.transform = "rotate(0deg)";
+                });
+                li.querySelector("i.off-chev").style.transform = "rotate(-180deg)";
+                setTimeout(() => {
+                    li.querySelector(".off-txt").classList.add("off-txt-active");
+                }, 250);
+            }
+        });
+    });
+});
+
 
 
 
