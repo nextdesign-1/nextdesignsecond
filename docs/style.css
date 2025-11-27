@@ -604,6 +604,7 @@ background-repeat: repeat-x;
     margin-bottom: 30px;
     width: 100%;
     display: flex;
+    justify-content: center;
     gap: 25px;
 }
 .services-wrapper {
@@ -613,7 +614,7 @@ background-repeat: repeat-x;
     top: 250px;
     left: 50px;
     transition: 0.5s ease;
-
+    max-width: 600px;
     width: 100%;
     border-radius: 8px;
     padding: 24px 24px 32px;
