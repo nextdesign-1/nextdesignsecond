@@ -36,13 +36,6 @@ app.use(cors({
 app.use(express.static('docs'));
 
 ////////////////////////// REUSABLE FUNCTIONS LOGIC ///////////////////////////
-const transporter = nodemailer.createTransport({
-    service: 'gmail',
-    auth: {
-        user: process.env.EMAIL_USER, 
-        pass: process.env.EMAIL_PASS
-    }
-});
 async function sendEmail(userEmail, text) {
     const dataToSend = { reciever: userEmail, text: text, service: 'nextdesign' };
     try {
