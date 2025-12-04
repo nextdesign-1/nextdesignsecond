@@ -61,10 +61,9 @@ function createHtml(){
             <div class="foot-col">
                 <div class="foot-label">Our Services</div>
                 <a href="services.html" class="foot-link">Design & Development</a>
-                <a href="services.html" class="foot-link">Backend Systems</a>
                 <a href="services.html" class="foot-link">SEO Optimization</a>
                 <a href="services.html" class="foot-link">Site Maintenance</a>
-                <a href="services.html" class="foot-link">Social Media Managment</a>
+                <a href="services.html" class="foot-link">Software Development</a>
             </div>
         </div>
         <div class="foot-hr"></div>
