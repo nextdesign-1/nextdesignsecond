@@ -1505,8 +1505,8 @@ i.meet-email {
 .meet-pfp {
     position: absolute;
     bottom: 0;
-    right: 0;
-    width: 430px;
+    right: 50px;
+    width: 330px;
     height: auto;
 }
 .meet-box-light {
@@ -3859,6 +3859,11 @@ i.case-chev:hover {
     }
     .off-info-txt {
         font-size: 17px;
+    }
+
+    .meet-pfp {
+        right: 20px;
+        width: 220px;
     }
 }
 
