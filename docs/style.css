@@ -614,6 +614,7 @@ background-repeat: repeat-x;
     top: 250px;
     left: 50px;
     transition: 0.5s ease;
+    background-color: #092843;
     max-width: 600px;
     width: 100%;
     border-radius: 8px;
