@@ -1771,6 +1771,7 @@ i.meet-email {
 .book-container {
     margin: 0 auto;
     display: flex;
+    display: none;
 }
 .book-content {
     display: flex;
@@ -2286,6 +2287,17 @@ i.book-delete-icon {
 }
 .admin-element, i.admin-element {
     display: none;
+}
+
+.google-container {
+    margin: 0 auto;
+    background-color: white;
+    height: 860px;
+    border-radius: 12px;
+}
+.google-container iframe {
+    height: 100%;
+    width: 100%;
 }
 /* ============================ */
 
