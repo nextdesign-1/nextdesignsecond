@@ -2,7 +2,7 @@ const express = require('express');
 const path = require('path');
 const mysql = require('mysql2');
 const app = express();
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.next_PORT || 3000;
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 require('dotenv').config();
@@ -11,14 +11,14 @@ const crypto = require('crypto');
 const e = require('express');
 const cors = require('cors');
 
-const url = process.env.FRONTEND_URL; // https://nextdesignwebsite.com   http://localhost:3000
+const url = process.env.next_FRONTEND_URL; // https://nextdesignwebsite.com   http://localhost:3000
 
 const db = mysql.createPool({
-    host: process.env.DB_HOST,
-    user: process.env.DB_USER,
-    password: process.env.DB_PASSWORD,
-    database: process.env.DB_NAME,
-    port: process.env.PORT,
+    host: process.env.next_DB_HOST,
+    user: process.env.next_DB_USER,
+    password: process.env.next_DB_PASSWORD,
+    database: process.env.next_DB_NAME,
+    port: process.env.next_PORT,
     waitForConnections: true,
     connectionLimit: 10,
     queueLimit: 0
@@ -36,7 +36,7 @@ app.use(cors({
 app.use(express.static('docs'));
 
 ////////////////////////// REUSABLE FUNCTIONS LOGIC ///////////////////////////
-async function sendEmail(userEmail, text) {
+async function nextSendEmail(userEmail, text) {
     const dataToSend = { reciever: userEmail, text: text, service: 'nextdesign' };
     try {
         const response = await fetch('https://email-sender-lkex.vercel.app/api/send-email', {
@@ -56,28 +56,28 @@ async function sendEmail(userEmail, text) {
         console.error('Error posting data:', error);
     }
 }
-function sendClientEmail(userEmail, date, time, email, message){
-    sendEmail(userEmail, `<p>Hello, a call was booked with NextDesign for: ${date}, ${time}\n\nEmail: ${email}\n\nMessage: ${message}</p>`);
+function nextSendClientEmail(userEmail, date, time, email, message){
+    nextSendEmail(userEmail, `<p>Hello, a call was booked with NextDesign for: ${date}, ${time}\n\nEmail: ${email}\n\nMessage: ${message}</p>`);
 }
-function sendClientDelete(userEmail, date, time){
-    sendEmail(userEmail, `<p>Hello, a booking was cancelled with NextDesign for: ${date}, ${time}.</p>`);
+function nextSendClientDelete(userEmail, date, time){
+    nextSendEmail(userEmail, `<p>Hello, a booking was cancelled with NextDesign for: ${date}, ${time}.</p>`);
 }
-function sendUserEmail(userEmail, date, time, link) {  
-    sendEmail(userEmail, `<p>Hello, you booked a call with NextDesign for ${date}, ${time}\n\nCancel anytime with this link: ${link}</p>`);
+function nextSendUserEmail(userEmail, date, time, link) {  
+    nextSendEmail(userEmail, `<p>Hello, you booked a call with NextDesign for ${date}, ${time}\n\nCancel anytime with this link: ${link}</p>`);
 }
-function sendUserDelete(userEmail) {
-    sendEmail(userEmail, `<p>Hello, your booking for NextDesign has been cancelled. Please rebook at your convenience.</p>`);
+function nextSendUserDelete(userEmail) {
+    nextSendEmail(userEmail, `<p>Hello, your booking for NextDesign has been cancelled. Please rebook at your convenience.</p>`);
 }
 function isValidEmail(email){
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return emailRegex.test(email);
 }
-function generateNumber(){
+function nextGenerateNumber(){
     return crypto.randomBytes(5).toString('hex'); 
 }
-function requireAdmin(req, res, next){
+function nextRequireAdmin(req, res, next){
     const code = req.query.code;
-    if(code != process.env.ADMIN_CODE) {
+    if(code != process.env.next_ADMIN_CODE) {
         console.log("admin fail");
         return res.json({ message: 'failure' });
     }
@@ -99,7 +99,7 @@ app.post("/api/book-appointment", (req, res) => {
         return res.json({ message: 'Failure' });
     }
 
-    const cancelCode = generateNumber();
+    const cancelCode = nextGenerateNumber();
     const cancelLink = url + "/?cancel=" + cancelCode;
 
     const insertQuery = "insert into bookings (booking_date, booking_time, email, phone_number, message, booking_type, cancel_code) values (?, ?, ?, ?, ?, ?, ?)";
@@ -109,8 +109,8 @@ app.post("/api/book-appointment", (req, res) => {
             return res.json({ message: 'Failure' });
         }
 
-        sendClientEmail(process.env.ADMIN_EMAIL, date, time, email, message);
-        sendUserEmail(email, date, time, cancelLink);
+        nextSendClientEmail(process.env.next_ADMIN_EMAIL, date, time, email, message);
+        nextSendUserEmail(email, date, time, cancelLink);
         return res.json({ message: 'success' });
     });
 });
@@ -173,11 +173,11 @@ app.post("/api/check-slots", (req, res) => {
     });
 });
 
-app.get("/api/admin-code", requireAdmin, (req, res) => {
+app.get("/api/admin-code", nextRequireAdmin, (req, res) => {
     return res.json({ message: 'success' });
 });
 
-app.post("/api/close-all", requireAdmin, (req, res) => {
+app.post("/api/close-all", nextRequireAdmin, (req, res) => {
     const date = req.body.date;
     const times = req.body.times;
 
@@ -192,7 +192,7 @@ app.post("/api/close-all", requireAdmin, (req, res) => {
             result.forEach(obj => {
                 if(!allStr.includes(obj.email)){
                     allStr += obj.email;
-                    sendUserDelete(obj.email);
+                    nextSendUserDelete(obj.email);
                 }
             });
         }
@@ -238,7 +238,7 @@ app.post("/api/close-all", requireAdmin, (req, res) => {
     });
 });
 
-app.post("/api/open-day", requireAdmin, (req, res) => {
+app.post("/api/open-day", nextRequireAdmin, (req, res) => {
     const date = req.body.date;
 
     const openQuery = "delete from bookings where booking_date = ?";
@@ -251,7 +251,7 @@ app.post("/api/open-day", requireAdmin, (req, res) => {
     });
 });
 
-app.post("/api/show-bookings", requireAdmin, (req, res) => {
+app.post("/api/show-bookings", nextRequireAdmin, (req, res) => {
     const date = req.body.date;
 
     const getBookingsQuery = "select * from bookings where booking_date = ? and booking_type = ?";
@@ -296,15 +296,15 @@ app.post("/api/delete-booking", (req, res) => {
             }
 
             if(result.length == 1){
-                sendUserDelete(result[0].email);
-                sendClientDelete(process.env.ADMIN_EMAIL, result[0].booking_date, result[0].booking_time);
+                nextSendUserDelete(result[0].email);
+                nextSendClientDelete(process.env.next_ADMIN_EMAIL, result[0].booking_date, result[0].booking_time);
             }
             return res.json({ message: 'success' });
         });
     });
 });
 
-app.post("/api/remove-slot", requireAdmin, (req, res) => {
+app.post("/api/remove-slot", nextRequireAdmin, (req, res) => {
     const date = req.body.date; 
     const time = req.body.time; 
 
@@ -320,7 +320,7 @@ app.post("/api/remove-slot", requireAdmin, (req, res) => {
     });
 });
 
-app.post("/api/open-slot", requireAdmin, (req, res) => {
+app.post("/api/open-slot", nextRequireAdmin, (req, res) => {
     const id = req.body.id;
 
     const openSlotQuery = "delete from bookings where id = ?";
@@ -333,7 +333,7 @@ app.post("/api/open-slot", requireAdmin, (req, res) => {
     });
 });
 
-app.post("/api/create-slot", requireAdmin, (req, res) => {
+app.post("/api/create-slot", nextRequireAdmin, (req, res) => {
     const date = req.body.date;
     const time = req.body.time;
 

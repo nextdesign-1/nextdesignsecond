@@ -432,7 +432,7 @@ if(window.location.href.includes("localhost")) {
     url = ""; 
     frontendUrl = "http://localhost:3000"; 
 } else {
-    url = "https://nextdesignsecond-o1vo.onrender.com"; 
+    url = "https://servers.nextdesignwebsite.com/nextdesign"; 
     frontendUrl = "https://nextdesignwebsite.com"; 
 }
 let startIdx;
