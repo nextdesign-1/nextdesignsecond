@@ -15,7 +15,7 @@ function createHtml(){
             </a>
             <a href="services.html" class="menu-li"><div class="menu-li-txt">Our Services</div></a>
             <a href="projects.html" class="menu-li"><div class="menu-li-txt">Our Works</div></a>
-            <a href="index.html#contact" class="menu-li"><div class="menu-li-txt">Book a Call</div></a>
+            <a target="_blank" href="https://calendar.app.google/Jrv38Mrh6v2SiaxZ8" class="menu-li"><div class="menu-li-txt">Book a Call</div></a>
         </div>
     `;
 
@@ -30,10 +30,10 @@ function createHtml(){
             <a href="team.html" class="header-link">Our team</a>
             <a href="services.html" class="header-link">Services</a>
             <a href="projects.html" class="header-link">Projects</a>
-            <a href="index.html#contact" class="header-link">Contact</a>
+            <a target="_blank" href="https://calendar.app.google/Jrv38Mrh6v2SiaxZ8" class="header-link">Contact</a>
         </div>
 
-        <a href="index.html#bookings" class="btn-header">Start Project</a>
+        <a target="_blank" href="https://calendar.app.google/Jrv38Mrh6v2SiaxZ8" class="btn-header">Start Project</a>
         <div class="header-burger" onclick="openMenu()">
             <div class="burger-line line1"></div>
             <div class="burger-line line2"></div>
@@ -48,7 +48,7 @@ function createHtml(){
             <div class="foot-col foot-col-left">
                 <img src="images/logo-transparent.png" class="foot-img" />
                 <div class="foot-para">NextDesign creates modern, high-performing websites with creative design and reliable development, helping businesses grow online.</div>
-                <a href="#bookings" class="btn-foot">Schedule a Call</a>
+                <a target="_blank" href="https://calendar.app.google/Jrv38Mrh6v2SiaxZ8" class="btn-foot">Schedule a Call</a>
             </div>
             <div class="foot-col">
                 <div class="foot-label">Useful Links</div>
@@ -56,7 +56,7 @@ function createHtml(){
                 <a href="#about" class="foot-link">About us</a>
                 <a href="services.html" class="foot-link">Our Services</a>
                 <a href="#works" class="foot-link">Our Works</a>
-                <a href="#contact" class="foot-link">Contact</a>
+                <a target="_blank" href="https://calendar.app.google/Jrv38Mrh6v2SiaxZ8" class="foot-link">Contact</a>
             </div>
             <div class="foot-col">
                 <div class="foot-label">Our Services</div>

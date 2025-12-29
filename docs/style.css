@@ -1767,6 +1767,50 @@ i.meet-email {
 }
 /*/////////////////////////////////////////////////////////////////*/
 
+/*/////////////////////// CTA SECTION ///////////////////////*/
+.cta-container {
+    margin: 0 auto 0;
+    padding: 160px 0;
+    border-radius: 20px;
+    background: linear-gradient(to right, #0f36ac, #8A2BE2, #ff0000);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+}
+.cta-title {
+    margin: 0 auto;
+    width: 800px;
+    max-width: 100%;
+    font-size: 62px;
+    font-weight: 600;
+    color: white;
+    line-height: 1.2;
+}
+.btn-cta {
+    margin-top: 35px;
+    align-self: center;
+    background: #111;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+    cursor: pointer;
+    border-radius: 12px;
+    padding: 10px 20px;
+    font-size: 17px;
+    font-weight: 500;
+    transition: 0.4s ease;
+}
+.btn-cta img {
+    height: 13px;
+    width: auto;
+}
+.btn-cta:hover {
+    background-color: hsl(0, 0%, 25%);
+}
+/*///////////////////////////////////////////////////////////*/
+
 /* ===== BOOKING SECTION ===== */
 .book-container {
     margin: 0 auto;
@@ -3239,6 +3283,16 @@ i.case-chev:hover {
     }
 }
 @media only screen and (max-width: 1100px){
+    .cta-title {
+        font-size: 42px;
+    }
+    .btn-cta {
+        font-size: 15px;
+    }
+    .btn-cta img {
+        height: 11px;
+    }
+
     .width, .meet-container, .valu-container {
         max-width: calc(100% - 20px);
     }
@@ -3876,6 +3930,14 @@ i.case-chev:hover {
     .meet-pfp {
         right: 20px;
         width: 220px;
+    }
+
+    .cta-container {
+        padding: 90px 0;
+    }
+    .cta-title {
+        font-size: 26px;
+        line-height: 1.3;
     }
 }
 
