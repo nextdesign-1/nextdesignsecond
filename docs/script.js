@@ -9,7 +9,7 @@ function createHtml(){
             <div class="x-line x2"></div>
         </div>
         <div class="menu-ul">
-            <a href="index.html" class="menu-li"><div class="menu-li-txt">Home</div></a>
+            <a href="/" class="menu-li"><div class="menu-li-txt">Home</div></a>
             <a href="team.html" class="menu-li">
                 <div class="menu-li-txt">About us</div>
             </a>
@@ -26,7 +26,7 @@ function createHtml(){
         <div class="header-name">NextDesign</div>
 
         <div class="header-nav">
-            <a href="index.html" class="header-link">Home</a>
+            <a href="/" class="header-link">Home</a>
             <a href="team.html" class="header-link">Our team</a>
             <a href="services.html" class="header-link">Services</a>
             <a href="projects.html" class="header-link">Projects</a>
@@ -52,7 +52,7 @@ function createHtml(){
             </div>
             <div class="foot-col">
                 <div class="foot-label">Useful Links</div>
-                <a href="index.html" class="foot-link">Home</a>
+                <a href="/" class="foot-link">Home</a>
                 <a href="#about" class="foot-link">About us</a>
                 <a href="services.html" class="foot-link">Our Services</a>
                 <a href="#works" class="foot-link">Our Works</a>
@@ -1503,7 +1503,7 @@ if(document.querySelector(".book-container") || document.querySelector(".lac-con
                 const response = await fetch(url + `/api/admin-code?admin=${params.get("admin")}&code=${params.get("code")}`);
                 const data = await response.json(); 
                 if(data.message == "failure"){
-                    window.location.href = "/index.html";
+                    window.location.href = "//";
                 }
             } catch (error) {
                 console.error('Error fetching data:', error);
