@@ -615,7 +615,7 @@ background-repeat: repeat-x;
     left: 50px;
     transition: 0.5s ease;
     background-color: #092843;
-    max-width: 600px;
+    max-width: 500px;
     width: 100%;
     border-radius: 8px;
     padding: 24px 24px 32px;
@@ -678,6 +678,24 @@ i.services-icon {
     background-size: 128px;
     background-repeat: repeat;
     transition: 0.5s ease;
+}
+.services-blur-premium {
+    display: block;
+    z-index: 2;
+    opacity: 0.05;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 14px;
+    background-size: 128px;
+    background-repeat: repeat;
+    transition: 0.5s ease;
+}
+.services-wrapper-premium {
+    background: linear-gradient(to bottom, hsl(225, 84%, 27%), hsl(271, 76%, 43%), hsl(0, 100%, 25%));
+    border: 0;
 }
 .btn-services {
     margin-top: 15px;
